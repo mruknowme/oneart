@@ -16,33 +16,32 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
       </mat-form-field>
     </div>
-  
     <mat-table #table [dataSource]="dataSource" matSort>
   
       <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-      </ng-container>
-  
-      <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Биография </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Имя пользователя </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="about">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Биография </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.about}} </mat-cell>
       </ng-container>
 
       <!-- Color Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="delete(element.id)"><mat-icon>delete</mat-icon></button>
         </mat-cell>
       </ng-container>
   

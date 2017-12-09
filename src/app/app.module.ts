@@ -39,6 +39,8 @@ import { CreatorsAddComponent } from './components/admin/creators-add/creators-a
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { GenresAddComponent } from './components/admin/genres-add/genres-add.component';
 
+import { DataService } from './services/admin/data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,7 @@ import { GenresAddComponent } from './components/admin/genres-add/genres-add.com
     AngularFirestoreModule.enablePersistence()
   ],
   entryComponents: [WorkAddComponent],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
