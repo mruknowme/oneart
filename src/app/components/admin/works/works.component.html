@@ -18,35 +18,41 @@
     <mat-table #table [dataSource]="dataSource" matSort>
   
       <!-- Position Column -->
-      <ng-container matColumnDef="position">
+      <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Название </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
+      <ng-container matColumnDef="genre">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Жанр </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.genre}} </mat-cell>
       </ng-container>
   
       <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
+      <ng-container matColumnDef="creator">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Художник </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.creator}} </mat-cell>
       </ng-container>
   
       <!-- Color Column -->
-      <ng-container matColumnDef="symbol">
+      <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Цена </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата написания </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.crated_at | date:'longDate':'':'ru'}} </mat-cell>
       </ng-container>
 
       <!-- Color Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
-            <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="delete(element.id)"><mat-icon>delete</mat-icon></button>
         </mat-cell>
       </ng-container>
   

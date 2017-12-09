@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';

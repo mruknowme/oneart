@@ -6,6 +6,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+registerLocaleData(localeRu, 'ru');
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';

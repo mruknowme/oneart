@@ -31,7 +31,7 @@ export class CreatorsAddComponent implements OnInit {
   createCreatorsAddForm() {
     this.creatorsAddForm = this.fb.group({
       name: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(70)] ],
-      username: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(20), Validators.pattern('^[a-z\s]*$')] ],
+      username: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(20), Validators.pattern('^[a-z]*$')] ],
       about: [ '', [Validators.required, Validators.minLength(50), Validators.maxLength(5000)] ],
     });
   }
