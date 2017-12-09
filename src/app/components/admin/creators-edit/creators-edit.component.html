@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Редактировать данные художника {{ (creator$ | async)?.name }}</h2>
+<form [formGroup]="creatorsEditForm">
+<mat-dialog-content class="creators-edit-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Имя Фамилия" formControlName="name" [value]="(creator$ | async)?.name">
+  </mat-form-field>
+  <div *ngIf="creatorsEditForm.controls.name.invalid && (creatorsEditForm.controls.name.touched || creatorsEditForm.controls.name.dirty)">
+    <mat-error *ngIf="creatorsEditForm.controls.name.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.name.errors.minlength">Это поле должно содержать не менее 6-ти символов</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.name.errors.maxlength">Это поле должно содержать не более 70-ти символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Логин (имя пользователя)" formControlName="username" [value]="(creator$ | async)?.username">
+  </mat-form-field>
+  <div *ngIf="creatorsEditForm.controls.username.invalid && (creatorsEditForm.controls.username.touched || creatorsEditForm.controls.username.dirty)">
+    <mat-error *ngIf="creatorsEditForm.controls.username.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.username.errors.minlength">Это поле должно содержать не менее 6-ти символов</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.username.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.username.errors.pattern">Это поле должно только строчные латинские буквы без пробелов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Биография" formControlName="about" [value]="(creator$ | async)?.about"></textarea>
+  </mat-form-field>
+  <div *ngIf="creatorsEditForm.controls.about.invalid && (creatorsEditForm.controls.about.touched || creatorsEditForm.controls.about.dirty)">
+    <mat-error *ngIf="creatorsEditForm.controls.about.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.about.errors.minlength">Это поле должно содержать не менее 50-ти символов</mat-error>
+    <mat-error *ngIf="creatorsEditForm.controls.about.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions class="creators-edit-dialog-actions">
+    <button mat-button mat-dialog-close>Отменить</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="creatorsEditForm.invalid" (click)="onSubmit($event.target, 'Сохраняю...')">Сохранить данные</button>
+  </mat-dialog-actions>
+</form>

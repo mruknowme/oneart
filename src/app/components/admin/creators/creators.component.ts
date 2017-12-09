@@ -1,7 +1,8 @@
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
-import { WorkAddComponent } from './../work-add/work-add.component';
+import { CreatorsAddComponent } from './../creators-add/creators-add.component';
+import { CreatorsEditComponent } from '../creators-edit/creators-edit.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
@@ -42,7 +43,7 @@ export class CreatorsComponent implements AfterViewInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(WorkAddComponent, {
+    const dialogRef = this.dialog.open(CreatorsAddComponent, {
       width: 'auto',
       height: 'auto',
       minWidth: '50%'
@@ -66,5 +67,14 @@ export class CreatorsComponent implements AfterViewInit {
 
   edit(id) {
     console.log(id);
+    const dialogRef = this.dialog.open(CreatorsEditComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
   }
 }

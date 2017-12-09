@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
 export interface Creators {
@@ -11,25 +11,25 @@ export interface Creators {
 }
 
 @Component({
-  selector: 'app-creators-add',
-  templateUrl: './creators-add.component.html',
-  styleUrls: ['./creators-add.component.sass'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-creators-edit',
+  templateUrl: './creators-edit.component.html',
+  styleUrls: ['./creators-edit.component.sass']
 })
+export class CreatorsEditComponent implements OnInit {
 
-export class CreatorsAddComponent implements OnInit {
+  private creatorsDocRef: AngularFirestoreDocument<Creators>;
+  public creator$: Observable<Creators>;
 
-  public creatorsColRef: AngularFirestoreCollection<Creators>;
-
-  public creatorsAddForm: FormGroup;
+  public creatorsEditForm: FormGroup;
 
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {
-    this.createCreatorsAddForm();
-    this.creatorsColRef = this.afs.collection<Creators>('creators');
+    this.createCreatorsEditForm();
+    this.creatorsDocRef = this.afs.doc<Creators>('creators/FvIdq0IKXcM7PYQL5aMV');
+    this.creator$ = this.creatorsDocRef.valueChanges();
   }
 
-  createCreatorsAddForm() {
-    this.creatorsAddForm = this.fb.group({
+  createCreatorsEditForm() {
+    this.creatorsEditForm = this.fb.group({
       name: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(70)] ],
       username: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(20), Validators.pattern('^[a-z\s]*$')] ],
       about: [ '', [Validators.required, Validators.minLength(50), Validators.maxLength(5000)] ],
@@ -37,19 +37,15 @@ export class CreatorsAddComponent implements OnInit {
   }
 
   onSubmit(button, text) {
-    if (this.creatorsAddForm.valid) {
+    if (this.creatorsEditForm.valid) {
       button.textContent = text;
       button.disabled = true;
-      const newCreator: Creators = {
-        name: this.creatorsAddForm.controls.name.value.trim(),
-        username: this.creatorsAddForm.controls.username.value.trim(),
-        about: this.creatorsAddForm.controls.about.value
+      const updatedCreator: Creators = {
+        name: this.creatorsEditForm.controls.name.value.trim(),
+        username: this.creatorsEditForm.controls.username.value.trim(),
+        about: this.creatorsEditForm.controls.about.value
       };
-      this.creatorsColRef.add({
-        about: newCreator.about,
-        name: newCreator.name,
-        username: newCreator.username
-      });
+      this.creatorsDocRef.update(updatedCreator);
     } else {
       alert('Возникла ошибка! Перезагрузите страницу и попробуйте заново.');
     }

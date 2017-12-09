@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
@@ -36,6 +37,7 @@ import { WorksComponent } from './components/admin/works/works.component';
 import { WorkAddComponent } from './components/admin/work-add/work-add.component';
 import { CreatorsComponent } from './components/admin/creators/creators.component';
 import { CreatorsAddComponent } from './components/admin/creators-add/creators-add.component';
+import { CreatorsEditComponent } from './components/admin/creators-edit/creators-edit.component';
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { GenresAddComponent } from './components/admin/genres-add/genres-add.component';
 
@@ -58,12 +60,14 @@ import { DataService } from './services/admin/data.service';
     CreatorsComponent,
     CreatorsAddComponent,
     GenresComponent,
-    GenresAddComponent
+    GenresAddComponent,
+    CreatorsEditComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
@@ -80,7 +84,7 @@ import { DataService } from './services/admin/data.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],
-  entryComponents: [WorkAddComponent],
+  entryComponents: [WorkAddComponent, CreatorsAddComponent, CreatorsEditComponent],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,38 @@
-<p>
-  creators-add works!
-</p>
+<h2 mat-dialog-title>Добавить художника в базу</h2>
+<form [formGroup]="creatorsAddForm">
+<mat-dialog-content class="creators-add-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Имя Фамилия" formControlName="name">
+  </mat-form-field>
+  <div *ngIf="creatorsAddForm.controls.name.invalid && (creatorsAddForm.controls.name.touched || creatorsAddForm.controls.name.dirty)">
+    <mat-error *ngIf="creatorsAddForm.controls.name.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.name.errors.minlength">Это поле должно содержать не менее 6-ти символов</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.name.errors.maxlength">Это поле должно содержать не более 70-ти символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Логин (имя пользователя)" formControlName="username">
+  </mat-form-field>
+  <div *ngIf="creatorsAddForm.controls.username.invalid && (creatorsAddForm.controls.username.touched || creatorsAddForm.controls.username.dirty)">
+    <mat-error *ngIf="creatorsAddForm.controls.username.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.username.errors.minlength">Это поле должно содержать не менее 6-ти символов</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.username.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.username.errors.pattern">Это поле должно только строчные латинские буквы без пробелов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Биография" formControlName="about"></textarea>
+  </mat-form-field>
+  <div *ngIf="creatorsAddForm.controls.about.invalid && (creatorsAddForm.controls.about.touched || creatorsAddForm.controls.about.dirty)">
+    <mat-error *ngIf="creatorsAddForm.controls.about.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.about.errors.minlength">Это поле должно содержать не менее 50-ти символов</mat-error>
+    <mat-error *ngIf="creatorsAddForm.controls.about.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions class="creators-add-dialog-actions">
+    <button mat-button mat-dialog-close>Отменить</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="creatorsAddForm.invalid" (click)="onSubmit($event.target, 'Добавляю...')">Добавить в базу</button>
+  </mat-dialog-actions>
+</form>
