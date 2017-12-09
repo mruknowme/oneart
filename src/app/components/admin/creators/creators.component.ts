@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { CreatorsAddComponent } from './../creators-add/creators-add.component';
 import { CreatorsEditComponent } from '../creators-edit/creators-edit.component';
+import { CreatorsDeleteComponent } from '../creators-delete/creators-delete.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
@@ -70,11 +71,26 @@ export class CreatorsComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(CreatorsEditComponent, {
       width: 'auto',
       height: 'auto',
-      minWidth: '50%'
+      minWidth: '50%',
+      data: { id: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       result === true ? console.log('saved') : console.log('closed, not saved');
+    });
+  }
+
+  delete(id) {
+    console.log(id);
+    const dialogRef = this.dialog.open(CreatorsDeleteComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('deleted') : console.log('closed, not deleted');
     });
   }
 }

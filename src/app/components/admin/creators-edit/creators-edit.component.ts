@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -22,9 +22,9 @@ export class CreatorsEditComponent implements OnInit {
 
   public creatorsEditForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private afs: AngularFirestore) {
+  constructor(private fb: FormBuilder, private afs: AngularFirestore, @Inject(MAT_DIALOG_DATA) public dialogData: any) {
     this.createCreatorsEditForm();
-    this.creatorsDocRef = this.afs.doc<Creators>('creators/FvIdq0IKXcM7PYQL5aMV');
+    this.creatorsDocRef = this.afs.doc<Creators>('creators/' + this.dialogData.id);
     this.creator$ = this.creatorsDocRef.valueChanges();
   }
 

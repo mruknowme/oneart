@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Удалить данные художника {{ (creator$ | async)?.name }}</h2>
+<mat-dialog-content class="creators-delete-dialog">
+  <h3>Вы уверены, что хотите удалить все данные художника?</h3>
+  <p>Удаление безвозвратно!</p>
+  <br>
+  <mat-error>Удаление художника не удаляет его работы, опубликованные на сайте.<br>Для того чтобы удалить картины художника перейдите в соответствующий раздел админ-панели</mat-error>
+</mat-dialog-content>
+<mat-dialog-actions class="creators-delete-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button type="submit" mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Удаляю...')">Удалить данные</button>
+</mat-dialog-actions>
