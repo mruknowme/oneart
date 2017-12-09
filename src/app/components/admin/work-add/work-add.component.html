@@ -14,20 +14,23 @@
 
   <div class="half">
     <mat-form-field>
-      <mat-select placeholder="Жанр" formControlName="genre">
+      <mat-select placeholder="Жанр" formControlName="genre" (change)="changeGenre()">
         <mat-option *ngFor="let genre of genres$ | async" value="{{ genre.title }}">{{ genre.title }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <input type="hidden" formControlName="genre_alias">
+    <input type="hidden" formControlName="genre_alias" [(ngModel)]="genre.alias">
+    <div *ngIf="worksAddForm.controls.genre.invalid && (worksAddForm.controls.genre.touched || worksAddForm.controls.genre.dirty)">
+      <mat-error *ngIf="worksAddForm.controls.genre.errors.required">Это поле обязательное</mat-error>
+    </div>
   </div>
 
   <div class="half">
     <mat-form-field>
-      <mat-select placeholder="Художник" formControlName="creator">
-        <mat-option *ngFor="let creator of creators$ | async" value="{{ creator.name }}">{{ creator.name }}</mat-option>
+      <mat-select placeholder="Художник" formControlName="creator" (change)="changeCreator()">
+        <mat-option *ngFor="let creator of creatorsOptions" value="{{ creator.name }}">{{ creator.name }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <input type="hidden" formControlName="creator_username">
+    <input type="hidden" formControlName="creator_username" [(ngModel)]="creator.username">
   </div>
 
   <mat-form-field>
@@ -60,11 +63,18 @@
       <mat-error *ngIf="worksAddForm.controls.link.errors.pattern">Это поле должно содержать строчные латинские буквы, цифры, прочерк и нижнее подчеркивание</mat-error>
     </div>
   </div>
-
+  {{ worksAddForm.controls.title.status | json }} 
+  {{ worksAddForm.controls.genre.status | json }} 
+  {{ worksAddForm.controls.genre_alias.status | json }} 
+  {{ worksAddForm.controls.creator.status | json }} 
+  {{ worksAddForm.controls.creator_username.status | json }} 
+  {{ worksAddForm.controls.description.status | json }} 
+  {{ worksAddForm.controls.price.status | json }} 
+  {{ worksAddForm.controls.link.status | json }} 
 </mat-dialog-content>
 <mat-dialog-actions class="work-add-dialog-actions">
   <button mat-button mat-dialog-close>Отменить</button>
   <!-- Can optionally provide a result for the closing dialog. -->
-  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Сохраняю...')">Добавить в каталог</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="worksAddForm.invalid" (click)="onSubmit($event.target, 'Сохраняю...')">Добавить в каталог</button>
 </mat-dialog-actions>
 </form>
