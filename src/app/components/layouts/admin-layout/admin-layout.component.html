@@ -1,0 +1,9 @@
+<app-toolbar (toggleSidenavEvent)="toggleSidenav($event)"></app-toolbar>
+<div class="wrapper">
+  <aside class="sidenav" [class.sidenav--open]="sidenavOpen">
+    <app-sidenav></app-sidenav>
+  </aside>
+  <main class="content">
+      <router-outlet></router-outlet>
+  </main>
+</div>

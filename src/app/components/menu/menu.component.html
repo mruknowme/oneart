@@ -1,0 +1,28 @@
+<div class="menu-brand">
+  OneArt
+</div>
+<nav class="menu-nav">
+  <ul>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="hvr-underline-from-left"><a routerLink="/">Главная</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/" class="hvr-underline-from-left">Все картины</li>
+    <li class="hvr-underline-from-left">Живопись</li>
+    <li class="hvr-underline-from-left">Карикатура</li>
+    <li class="hvr-underline-from-left">Пейзаж</li>
+    <li class="hvr-underline-from-left">Другие жанры</li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/about" class="hvr-underline-from-left">О нас</li>
+    <li class="hvr-underline-from-left">Контакты</li>
+  </ul>
+</nav>
+<div class="menu-contact">
+  <div class="menu-contact-item">
+    <a routerLink="/">Адрес на карте</a>
+  </div>
+  <address class="menu-contact-item">
+    <h3>Телефон</h3>
+    <p>+7(342) 299-99-99</p>
+  </address>
+  <address class="menu-contact-item">
+    <h3>Email</h3>
+    <p>info@oneart.ru</p>
+  </address>
+</div>

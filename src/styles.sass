@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/reset.sass'
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import './assets/hover-min.css'
+
+*
+    font-size: 16px
+    box-sizing: border-box
+
+html, body
+    font-family: 'Roboto', sans-serif
+    background-color: #f4f4f4
+
+a
+    color: inherit
+    text-decoration: none
+    outline: none
+
+.hvr-underline-from-left
+    &:before
+        background: #000
+        height: 1px
+        bottom: 2px
+        transition: 0.4s cubic-bezier(1, 0, 0, 1)
+        transition-delay: .1s

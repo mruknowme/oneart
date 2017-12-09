@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Добавить картину в каталог</h2>
+<mat-dialog-content class="work-add-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Название">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Жанр">
+      <mat-option *ngFor="let genre of genres$ | async" value="{{ genre.title }}">{{ genre.title }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Художник">
+      <mat-option *ngFor="let creator of creators$ | async" value="{{ creator.name }}">{{ creator.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Описание"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Цена">
+  </mat-form-field>
+
+</mat-dialog-content>
+<mat-dialog-actions class="work-add-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Добавить в каталог</button>
+</mat-dialog-actions>

@@ -1,0 +1,35 @@
+<div class="work" *ngFor="let work of work$ | async">
+  <h1 class="work-title">{{ work.title }}</h1>
+  <small class="work-genre">{{ work.genre }}</small>
+  <img src="{{ work.images[0] }}" alt="">
+  <div class="work-content">
+    <div class="work-description">
+      <h2>Описание картины</h2>
+      <hr>
+      <p>{{ work.description }}</p>
+    </div>
+    <div class="work-details">
+      <h2>Детали</h2>
+      <hr>
+      <table>
+        <tr>
+          <td>Художник</td>
+          <td>{{ work.creator }}</td>
+        </tr>
+        <tr>
+          <td>Дата</td>
+          <td>{{ work.crated_at | date : "dd/MM/y" }}</td>
+        </tr>
+        <tr>
+          <td>Жанр</td>
+          <td>{{ work.genre }}</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button class="work-btn-buy">Купить за {{ work.price }} руб.</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
