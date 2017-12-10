@@ -6,8 +6,8 @@
     <div class="contact-info">
       <h3>Контактная информация</h3>
       <ul>
-        <li>Телефон: <span>info</span></li>
-        <li>Email: <span>info</span></li>
+        <li>Телефон: <span>{{ site.phone_main }}</span></li>
+        <li>Email: <span>{{ site.email_general }}</span></li>
         <li>VK: <span>info</span></li>
         <li>Telegram: <span>info</span></li>
       </ul>
@@ -15,13 +15,35 @@
     <div class="contact-form-container">
       <h3>Форма обратной связи</h3>
       <small>Обычно отвечаем в течение одного рабочего дня</small>
-      <div class="temp">
-        <input type="text" class="half" placeholder="Ваше имя">
-        <input type="tel" class="half" placeholder="Номер телефона для связи">
-        <input type="email" class="full" placeholder="Email для ответа">
-        <textarea rows="7" class="full" placeholder="Ваше сообщение, пожелание или вопрос"></textarea>
-        <button type="submit">Отправить</button>
-      </div>
+      <form [formGroup]="contactForm" *ngIf="!formSubmitted; else thankyouMessage">
+        <input type="text" class="half" formControlName="name" placeholder="Ваше имя">
+        <input type="tel" class="half" formControlName="phone" placeholder="Номер телефона для связи">
+        <div *ngIf="contactForm.controls.name.invalid && (contactForm.controls.name.touched || contactForm.controls.name.dirty)">
+          <mat-error *ngIf="contactForm.controls.name.errors.required">Это поле обязательное</mat-error>
+          <mat-error *ngIf="contactForm.controls.name.errors.minlength">Это поле должно содержать не менее 2-х символов</mat-error>
+          <mat-error *ngIf="contactForm.controls.name.errors.maxlength">Это поле должно содержать не более 30-ти символов</mat-error>
+        </div>
+        <div *ngIf="contactForm.controls.phone.invalid && (contactForm.controls.phone.touched || contactForm.controls.phone.dirty)">
+          <mat-error *ngIf="contactForm.controls.phone.errors.required">Это поле обязательное</mat-error>
+          <mat-error *ngIf="contactForm.controls.phone.errors.pattern">Указан некорректный номер телефона</mat-error>
+        </div>
+        <input type="email" class="full" formControlName="email" placeholder="Email для ответа">
+        <div *ngIf="contactForm.controls.email.invalid && (contactForm.controls.email.touched || contactForm.controls.email.dirty)">
+          <mat-error *ngIf="contactForm.controls.email.errors.required">Это поле обязательное</mat-error>
+          <mat-error *ngIf="contactForm.controls.email.errors.email">Указан некорректный email</mat-error>
+        </div>
+        <textarea rows="7" class="full" formControlName="message" placeholder="Ваше сообщение, пожелание или вопрос"></textarea>
+        <div *ngIf="contactForm.controls.message.invalid && (contactForm.controls.message.touched || contactForm.controls.message.dirty)">
+          <mat-error *ngIf="contactForm.controls.message.errors.required">Это поле обязательное</mat-error>
+          <mat-error *ngIf="contactForm.controls.message.errors.minlength">Это поле должно содержать не менее 10-ти символов</mat-error>
+          <mat-error *ngIf="contactForm.controls.message.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+        </div>
+        <button type="submit" [disabled]="contactForm.invalid" (click)="onSubmit($event.target, 'Отправляю...')">Отправить</button>
+      </form>
+      <ng-template #thankyouMessage>
+        <h3>Отаправлено!</h3>
+        <p>Менеджер с Вами свяжется в скором времени.</p>
+      </ng-template>
     </div>
   </div>
 </div>
