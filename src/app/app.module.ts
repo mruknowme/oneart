@@ -49,6 +49,8 @@ import { GenresAddComponent } from './components/admin/genres-add/genres-add.com
 import { DataService } from './services/admin/data.service';
 import { WorksDeleteComponent } from './components/admin/works-delete/works-delete.component';
 import { WorksEditComponent } from './components/admin/works-edit/works-edit.component';
+import { GenresDeleteComponent } from './components/admin/genres-delete/genres-delete.component';
+import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { WorksEditComponent } from './components/admin/works-edit/works-edit.com
     CreatorsEditComponent,
     CreatorsDeleteComponent,
     WorksDeleteComponent,
-    WorksEditComponent
+    WorksEditComponent,
+    GenresDeleteComponent,
+    GenresEditComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,7 @@ import { WorksEditComponent } from './components/admin/works-edit/works-edit.com
   entryComponents: [
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
-    GenresAddComponent
+    GenresAddComponent, GenresEditComponent, GenresDeleteComponent
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

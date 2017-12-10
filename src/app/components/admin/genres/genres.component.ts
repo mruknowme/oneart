@@ -4,6 +4,8 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { GenresAddComponent } from '../genres-add/genres-add.component';
+import { GenresDeleteComponent } from '../genres-delete/genres-delete.component';
+import { GenresEditComponent } from '../genres-edit/genres-edit.component';
 
 export interface Genres {
   alias: string;
@@ -65,10 +67,29 @@ export class GenresComponent implements AfterViewInit {
 
   edit(id) {
     console.log(id);
+    const dialogRef = this.dialog.open(GenresEditComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
   }
 
   delete(id) {
-    console.log(id);
+    const dialogRef = this.dialog.open(GenresDeleteComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('deleted') : console.log('closed, not deleted');
+    });
   }
 
 }

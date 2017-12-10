@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Удалить жанр {{ (genre$ | async)?.title }}</h2>
+<mat-dialog-content class="creators-delete-dialog">
+  <h3>Вы уверены, что хотите удалить этот жанр?</h3>
+  <p>Удаление безвозвратно!</p>
+  <br>
+  <mat-error>Удаление жанра не удаляет связанные с жанром работы, опубликованные на сайте.<br>Для того чтобы удалить или изменить картины этого жанра перейдите в соответствующий раздел админ-панели</mat-error>
+  <br>
+  <mat-error>Обратите внимение, если есть картины с этим жанром, то при его удалении могут возникнуть ошибки на сайте. Рекомендуется вначале изменить/удалить картины</mat-error>
+</mat-dialog-content>
+<mat-dialog-actions class="creators-delete-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button type="submit" mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Удаляю...')">Удалить данные</button>
+</mat-dialog-actions>
