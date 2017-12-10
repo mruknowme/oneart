@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Удалить картину {{ (work$ | async)?.title }}</h2>
+<mat-dialog-content class="creators-delete-dialog">
+  <h3>Вы уверены, что хотите удалить эту картину/работу из базы данных?</h3>
+  <p>Удаление безвозвратно!</p>
+</mat-dialog-content>
+<mat-dialog-actions class="creators-delete-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button type="submit" mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Удаляю...')">Удалить картину</button>
+</mat-dialog-actions>

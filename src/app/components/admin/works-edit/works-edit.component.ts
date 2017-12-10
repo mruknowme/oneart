@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
 export interface Genres {
@@ -29,11 +29,11 @@ export interface Work {
 }
 
 @Component({
-  selector: 'app-work-add',
-  templateUrl: './work-add.component.html',
-  styleUrls: ['./work-add.component.sass']
+  selector: 'app-works-edit',
+  templateUrl: './works-edit.component.html',
+  styleUrls: ['./works-edit.component.sass']
 })
-export class WorkAddComponent implements OnInit {
+export class WorksEditComponent implements OnInit {
 
   genresColRef: AngularFirestoreCollection<Genres>;
   genres$: Observable<Genres[]>;
@@ -41,12 +41,16 @@ export class WorkAddComponent implements OnInit {
   creatorsColRef: AngularFirestoreCollection<Creators>;
   creators$: Observable<Creators[]>;
 
+  workDocRef: AngularFirestoreDocument<Work>;
+  work$: Observable<Work>;
+
   creatorsOptions: any;
   genreOptions: any;
+  workData: any;
 
   private worksColRef: AngularFirestoreCollection<Work>;
 
-  public worksAddForm: FormGroup;
+  public worksEditForm: FormGroup;
 
   public creator: Creators = {
     about: '',
@@ -59,7 +63,20 @@ export class WorkAddComponent implements OnInit {
     title: ''
   };
 
-  constructor(private fb: FormBuilder, private afs: AngularFirestore) {
+  public work: Work = {
+    created_at: '',
+    creator: '',
+    creator_username: '',
+    description: '',
+    genre: '',
+    genre_alias: '',
+    images: [''],
+    link: '',
+    price: 0,
+    title: ''
+  };
+
+  constructor(private fb: FormBuilder, private afs: AngularFirestore, @Inject(MAT_DIALOG_DATA) public dialogData: any) {
     this.genresColRef = this.afs.collection<Genres>('genres', ref => ref.orderBy('title'));
     this.genres$ = this.genresColRef.valueChanges();
     this.genres$.subscribe(data => this.genreOptions = data);
@@ -68,13 +85,21 @@ export class WorkAddComponent implements OnInit {
     this.creators$ = this.creatorsColRef.valueChanges();
     this.creators$.subscribe(data => this.creatorsOptions = data);
 
-    this.createWorksAddForm();
+    this.createWorksEditForm();
 
-    this.worksColRef = this.afs.collection<Work>('works');
+    this.workDocRef = this.afs.doc<Work>('works/' + this.dialogData.id);
+    this.work$ = this.workDocRef.valueChanges();
+    this.work$.subscribe(data => {
+      this.work = data;
+
+      this.creator.username = this.work.creator_username;
+      this.genre.alias = this.work.genre_alias;
+    });
+
   }
 
-  createWorksAddForm() {
-    this.worksAddForm = this.fb.group({
+  createWorksEditForm() {
+    this.worksEditForm = this.fb.group({
       creator: ['', [Validators.required]],
       creator_username: ['', [Validators.required]],
       genre: ['', [Validators.required]],
@@ -87,45 +112,33 @@ export class WorkAddComponent implements OnInit {
   }
 
   onSubmit(button, text) {
-    console.log(this.worksAddForm);
-    if (this.worksAddForm.valid) {
+    if (this.worksEditForm.valid) {
       button.textContent = text;
       button.disabled = true;
-      const newWork: Work = {
+      const updatedWork: Work = {
         created_at: Date(),
-        creator: this.worksAddForm.controls.creator.value.trim(),
-        creator_username: this.worksAddForm.controls.creator_username.value.trim(),
-        description: this.worksAddForm.controls.description.value,
-        genre: this.worksAddForm.controls.genre.value.trim(),
-        genre_alias: this.worksAddForm.controls.genre_alias.value.trim(),
+        creator: this.worksEditForm.controls.creator.value.trim(),
+        creator_username: this.worksEditForm.controls.creator_username.value.trim(),
+        description: this.worksEditForm.controls.description.value,
+        genre: this.worksEditForm.controls.genre.value.trim(),
+        genre_alias: this.worksEditForm.controls.genre_alias.value.trim(),
         images: [''],
-        link: this.worksAddForm.controls.link.value.trim(),
-        price: this.worksAddForm.controls.price.value,
-        title: this.worksAddForm.controls.title.value.trim()
+        link: this.worksEditForm.controls.link.value.trim(),
+        price: this.worksEditForm.controls.price.value,
+        title: this.worksEditForm.controls.title.value.trim()
       };
-      this.worksColRef.add({
-        created_at: newWork.created_at,
-        creator: newWork.creator,
-        creator_username: newWork.creator_username,
-        description: newWork.description,
-        genre: newWork.genre,
-        genre_alias: newWork.genre_alias,
-        images: newWork.images,
-        link: newWork.link,
-        price: newWork.price,
-        title: newWork.title
-      });
+      this.workDocRef.update(updatedWork);
     } else {
       alert('Возникла ошибка! Перезагрузите страницу и попробуйте заново.');
     }
   }
 
   changeGenre() {
-    this.genre = this.genreOptions.find(item => item.title === this.worksAddForm.controls.genre.value);
+    this.genre = this.genreOptions.find(item => item.title === this.worksEditForm.controls.genre.value);
   }
 
   changeCreator() {
-    this.creator = this.creatorsOptions.find(item => item.name === this.worksAddForm.controls.creator.value);
+    this.creator = this.creatorsOptions.find(item => item.name === this.worksEditForm.controls.creator.value);
   }
 
   ngOnInit() {}

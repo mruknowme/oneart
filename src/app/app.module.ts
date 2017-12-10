@@ -47,6 +47,8 @@ import { GenresComponent } from './components/admin/genres/genres.component';
 import { GenresAddComponent } from './components/admin/genres-add/genres-add.component';
 
 import { DataService } from './services/admin/data.service';
+import { WorksDeleteComponent } from './components/admin/works-delete/works-delete.component';
+import { WorksEditComponent } from './components/admin/works-edit/works-edit.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { DataService } from './services/admin/data.service';
     GenresComponent,
     GenresAddComponent,
     CreatorsEditComponent,
-    CreatorsDeleteComponent
+    CreatorsDeleteComponent,
+    WorksDeleteComponent,
+    WorksEditComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +94,10 @@ import { DataService } from './services/admin/data.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],
-  entryComponents: [WorkAddComponent, CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent],
+  entryComponents: [
+    WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
+    CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent
+  ],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

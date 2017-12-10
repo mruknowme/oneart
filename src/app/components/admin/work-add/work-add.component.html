@@ -63,14 +63,6 @@
       <mat-error *ngIf="worksAddForm.controls.link.errors.pattern">Это поле должно содержать строчные латинские буквы, цифры, прочерк и нижнее подчеркивание</mat-error>
     </div>
   </div>
-  {{ worksAddForm.controls.title.status | json }} 
-  {{ worksAddForm.controls.genre.status | json }} 
-  {{ worksAddForm.controls.genre_alias.status | json }} 
-  {{ worksAddForm.controls.creator.status | json }} 
-  {{ worksAddForm.controls.creator_username.status | json }} 
-  {{ worksAddForm.controls.description.status | json }} 
-  {{ worksAddForm.controls.price.status | json }} 
-  {{ worksAddForm.controls.link.status | json }} 
 </mat-dialog-content>
 <mat-dialog-actions class="work-add-dialog-actions">
   <button mat-button mat-dialog-close>Отменить</button>

@@ -4,6 +4,8 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { WorkAddComponent } from './../work-add/work-add.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { WorksDeleteComponent } from '../works-delete/works-delete.component';
+import { WorksEditComponent } from '../works-edit/works-edit.component';
 
 export interface Work {
   created_at: string;
@@ -72,10 +74,30 @@ export class WorksComponent implements AfterViewInit {
 
   edit(id) {
     console.log(id);
+    const dialogRef = this.dialog.open(WorksEditComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
   }
 
   delete(id) {
     console.log(id);
+    const dialogRef = this.dialog.open(WorksDeleteComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('deleted') : console.log('closed, not deleted');
+    });
   }
 
 }

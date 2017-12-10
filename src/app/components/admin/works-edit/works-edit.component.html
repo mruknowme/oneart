@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>Изменить картину {{ (work$ | async)?.title }}</h2>
+<form [formGroup]="worksEditForm">
+<mat-dialog-content class="work-edit-dialog">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Название" formControlName="title" [(ngModel)]="work.title">
+    </mat-form-field>
+    <div *ngIf="worksEditForm.controls.title.invalid && (worksEditForm.controls.title.touched || worksEditForm.controls.title.dirty)">
+      <mat-error *ngIf="worksEditForm.controls.title.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.title.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.title.errors.maxlength">Это поле должно содержать не более 70-ти символов</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <mat-select placeholder="Жанр" formControlName="genre" (change)="changeGenre()" [(ngModel)]="work.genre">
+        <mat-option *ngFor="let genre of genres$ | async" value="{{ genre.title }}">{{ genre.title }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="hidden" formControlName="genre_alias" [(ngModel)]="genre.alias">
+    <div *ngIf="worksEditForm.controls.genre.invalid && (worksEditForm.controls.genre.touched || worksEditForm.controls.genre.dirty)">
+      <mat-error *ngIf="worksEditForm.controls.genre.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <mat-select placeholder="Художник" formControlName="creator" (change)="changeCreator()" [(ngModel)]="work.creator">
+        <mat-option *ngFor="let creator of creatorsOptions" value="{{ creator.name }}">{{ creator.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="hidden" formControlName="creator_username" [(ngModel)]="creator.username">
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Описание" formControlName="description" [(ngModel)]="work.description"></textarea>
+  </mat-form-field>
+  <div *ngIf="worksEditForm.controls.description.invalid && (worksEditForm.controls.description.touched || worksEditForm.controls.description.dirty)">
+    <mat-error *ngIf="worksEditForm.controls.description.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="worksEditForm.controls.description.errors.minlength">Это поле должно содержать не менее 50-х символов</mat-error>
+    <mat-error *ngIf="worksEditForm.controls.description.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Цена" type="number" formControlName="price" [(ngModel)]="work.price">
+    </mat-form-field>
+    <div *ngIf="worksEditForm.controls.price.invalid && (worksEditForm.controls.price.touched || worksEditForm.controls.price.dirty)">
+      <mat-error *ngIf="worksEditForm.controls.price.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.price.errors.min">Цена не может быть меньше нуля</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Ссылка" formControlName="link" [(ngModel)]="work.link">
+    </mat-form-field>
+    <div *ngIf="worksEditForm.controls.link.invalid && (worksEditForm.controls.link.touched || worksEditForm.controls.link.dirty)">
+      <mat-error *ngIf="worksEditForm.controls.link.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.link.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.link.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+      <mat-error *ngIf="worksEditForm.controls.link.errors.pattern">Это поле должно содержать строчные латинские буквы, цифры, прочерк и нижнее подчеркивание</mat-error>
+    </div>
+  </div>
+  {{ worksEditForm.controls.title.status | json }} 
+  {{ worksEditForm.controls.genre.status | json }} 
+  {{ worksEditForm.controls.genre_alias.status | json }} 
+  {{ worksEditForm.controls.creator.status | json }} 
+  {{ worksEditForm.controls.creator_username.status | json }} 
+  {{ worksEditForm.controls.description.status | json }} 
+  {{ worksEditForm.controls.price.status | json }} 
+  {{ worksEditForm.controls.link.status | json }} 
+</mat-dialog-content>
+<mat-dialog-actions class="work-edit-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="worksEditForm.invalid" (click)="onSubmit($event.target, 'Сохраняю...')">Сохранить изменения</button>
+</mat-dialog-actions>
+</form>
