@@ -9,6 +9,7 @@ import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-la
 import { WorksComponent } from './components/admin/works/works.component';
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { CreatorsComponent } from './components/admin/creators/creators.component';
+import { SettingsComponent } from './components/admin/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'creators',
         component: CreatorsComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
       }
     ]
   },

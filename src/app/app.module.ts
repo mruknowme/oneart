@@ -30,6 +30,8 @@ import { MatButtonModule,
   MatTableModule,
   MatFormFieldModule,
   MatSelectModule,
+  MatSnackBarModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -51,6 +53,7 @@ import { WorksDeleteComponent } from './components/admin/works-delete/works-dele
 import { WorksEditComponent } from './components/admin/works-edit/works-edit.component';
 import { GenresDeleteComponent } from './components/admin/genres-delete/genres-delete.component';
 import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.component';
+import { SettingsComponent } from './components/admin/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,8 @@ import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.
     WorksDeleteComponent,
     WorksEditComponent,
     GenresDeleteComponent,
-    GenresEditComponent
+    GenresEditComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,8 @@ import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatSnackBarModule,
+    MatSlideToggleModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],

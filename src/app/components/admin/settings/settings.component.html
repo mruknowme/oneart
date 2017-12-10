@@ -1,0 +1,55 @@
+<div class="admin-genres">
+  <div class="admin-header">
+    <div class="admin-title">
+      <h2>Настройки</h2>
+      <small>Основные настройки сайта</small>
+    </div>
+  </div>
+  <div class="admin-settings-container">
+    <p>Для более детальных натсроек/изменений сайта требуется обратиться к разработчику</p>
+    <br>
+    <form [formGroup]="settingsForm">
+      <div class="flex">
+        <div class="full">
+          <mat-slide-toggle color="primary" [checked]="site.status" (change)="changeSiteStatus()">
+            <span *ngIf="site.status">Сайт включен и доступен посетителям</span>
+            <span *ngIf="!site.status">Сайт выключен и НЕ доступен посетителям</span>
+          </mat-slide-toggle>
+          <br><br>
+        </div>
+        <div class="half">
+          <mat-form-field>
+            <input matInput placeholder="Email (основной)" formControlName="email_general" type="email" [(ngModel)]="site.email_general">
+          </mat-form-field>
+          <div *ngIf="settingsForm.controls.email_general.invalid && (settingsForm.controls.email_general.touched || settingsForm.controls.email_general.dirty)">
+            <mat-error *ngIf="settingsForm.controls.email_general.errors.required">Это поле обязательное</mat-error>
+            <mat-error *ngIf="settingsForm.controls.email_general.errors.email">Требуется указать корректный email</mat-error>
+          </div>
+        </div>
+        <div class="half">
+          <mat-form-field>
+            <input matInput placeholder="Телефон (основной)" formControlName="phone_main" type="tel" [(ngModel)]="site.phone_main">
+          </mat-form-field>
+          <div *ngIf="settingsForm.controls.phone_main.invalid && (settingsForm.controls.phone_main.touched || settingsForm.controls.phone_main.dirty)">
+            <mat-error *ngIf="settingsForm.controls.phone_main.errors.required">Это поле обязательное</mat-error>
+            <mat-error *ngIf="settingsForm.controls.phone_main.errors.minlength">Это поле должно содержать не менее 6-ти символов</mat-error>
+            <mat-error *ngIf="settingsForm.controls.phone_main.errors.maxlength">Это поле должно содержать не более 30-ти символов</mat-error>
+          </div>
+        </div>
+        <div class="full">
+          <mat-form-field>
+            <input matInput placeholder="Адрес" formControlName="address" [(ngModel)]="site.address">
+          </mat-form-field>
+          <div *ngIf="settingsForm.controls.address.invalid && (settingsForm.controls.address.touched || settingsForm.controls.address.dirty)">
+            <mat-error *ngIf="settingsForm.controls.address.errors.required">Это поле обязательное</mat-error>
+            <mat-error *ngIf="settingsForm.controls.address.errors.minlength">Это поле должно содержать не менее 10-ти символов</mat-error>
+            <mat-error *ngIf="settingsForm.controls.address.errors.maxlength">Это поле должно содержать не более 150-ти символов</mat-error>
+          </div>
+        </div>
+      </div>
+      <div class="admin-buttons">
+        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="settingsForm.invalid || settingsForm.pristine">Сохранить <mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </div>
+</div>
