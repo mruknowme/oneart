@@ -1,7 +1,15 @@
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
-import { WorkAddComponent } from './../work-add/work-add.component';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { GenresAddComponent } from '../genres-add/genres-add.component';
+
+export interface Genres {
+  alias: string;
+  description: string;
+  title: string;
+}
 
 @Component({
   selector: 'app-genres',
@@ -11,16 +19,29 @@ import { WorkAddComponent } from './../work-add/work-add.component';
 })
 export class GenresComponent implements AfterViewInit {
 
-  displayedColumns = ['position', 'name', 'id'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  genresColRef: AngularFirestoreCollection<Genres>;
+  genres$: Observable<Genres[]>;
+
+  displayedColumns = ['title', 'alias', 'id'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private afs: AngularFirestore) {
+    this.genresColRef = this.afs.collection<Genres>('genres');
+    this.genres$ = this.genresColRef.snapshotChanges().map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as Genres;
+        const id = action.payload.doc.id;
+        return { id, ...data};
+      });
+    });
+    this.genres$.subscribe(data => this.dataSource.data = data);
+  }
 
   openDialog() {
-    const dialogRef = this.dialog.open(WorkAddComponent, {
+    const dialogRef = this.dialog.open(GenresAddComponent, {
       width: 'auto',
       height: 'auto',
       minWidth: '50%'
@@ -41,33 +62,13 @@ export class GenresComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-}
 
-export interface Element {
-  name: string;
-  position: number;
-  id: string;
-}
+  edit(id) {
+    console.log(id);
+  }
 
-const ELEMENT_DATA: Element[] = [
-  {position: 1, name: 'Hydrogen', id: 'Hak7'},
-  {position: 2, name: 'Helium', id: 'Hak7'},
-  {position: 3, name: 'Lithium', id: 'Hak7'},
-  {position: 4, name: 'Beryllium', id: 'Hak7'},
-  {position: 5, name: 'Boron', id: 'Hak7'},
-  {position: 6, name: 'Carbon', id: 'Hak7'},
-  {position: 7, name: 'Nitrogen', id: 'Hak7'},
-  {position: 8, name: 'Oxygen', id: 'Hak7'},
-  {position: 9, name: 'Fluorine', id: 'Hak7'},
-  {position: 10, name: 'Neon', id: 'Hak7'},
-  {position: 11, name: 'Sodium', id: 'Hak7'},
-  {position: 12, name: 'Magnesium', id: 'Hak7'},
-  {position: 13, name: 'Aluminum', id: 'Hak7'},
-  {position: 14, name: 'Silicon', id: 'Hak7'},
-  {position: 15, name: 'Phosphorus', id: 'Hak7'},
-  {position: 16, name: 'Sulfur', id: 'Hak7'},
-  {position: 17, name: 'Chlorine', id: 'Hak7'},
-  {position: 18, name: 'Argon', id: 'Hak7'},
-  {position: 19, name: 'Potassium', id: 'Hak7'},
-  {position: 20, name: 'Calcium', id: 'Hak7'},
-];
+  delete(id) {
+    console.log(id);
+  }
+
+}

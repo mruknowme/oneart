@@ -1,3 +1,38 @@
-<p>
-  genres-add works!
-</p>
+<h2 mat-dialog-title>Добавить жанр в базу</h2>
+<form [formGroup]="genresAddForm">
+<mat-dialog-content class="genres-add-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Жанр" formControlName="title">
+  </mat-form-field>
+  <div *ngIf="genresAddForm.controls.title.invalid && (genresAddForm.controls.title.touched || genresAddForm.controls.title.dirty)">
+    <mat-error *ngIf="genresAddForm.controls.title.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.title.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.title.errors.maxlength">Это поле должно содержать не более 70-ти символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Алиас" formControlName="alias">
+  </mat-form-field>
+  <div *ngIf="genresAddForm.controls.alias.invalid && (genresAddForm.controls.alias.touched || genresAddForm.controls.alias.dirty)">
+    <mat-error *ngIf="genresAddForm.controls.alias.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.alias.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.alias.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.alias.errors.pattern">Это поле должно только строчные латинские буквы без пробелов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Описание" formControlName="description"></textarea>
+  </mat-form-field>
+  <div *ngIf="genresAddForm.controls.description.invalid && (genresAddForm.controls.description.touched || genresAddForm.controls.description.dirty)">
+    <mat-error *ngIf="genresAddForm.controls.description.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.description.errors.minlength">Это поле должно содержать не менее 50-ти символов</mat-error>
+    <mat-error *ngIf="genresAddForm.controls.description.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions class="genres-add-dialog-actions">
+    <button mat-button mat-dialog-close>Отменить</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="genresAddForm.invalid" (click)="onSubmit($event.target, 'Добавляю...')">Добавить в базу</button>
+  </mat-dialog-actions>
+</form>

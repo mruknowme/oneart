@@ -96,7 +96,8 @@ import { WorksEditComponent } from './components/admin/works-edit/works-edit.com
   ],
   entryComponents: [
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
-    CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent
+    CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
+    GenresAddComponent
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
