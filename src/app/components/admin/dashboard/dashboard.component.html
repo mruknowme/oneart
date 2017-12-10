@@ -5,4 +5,26 @@
       <small>Ключевая информация и основные функции</small>
     </div>
   </div>
+  <div class="admin-cards-container">
+    <mat-card>
+      <mat-card-title>Картины</mat-card-title>
+      <mat-card-subtitle>Кол-во картин на сайте</mat-card-subtitle>
+      <mat-card-content>{{ works?.length }}</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>Художники</mat-card-title>
+      <mat-card-subtitle>Кол-во художников на сайте</mat-card-subtitle>
+      <mat-card-content>{{ creators?.length }}</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>Жанры</mat-card-title>
+      <mat-card-subtitle>Кол-во жанров на сайте</mat-card-subtitle>
+      <mat-card-content>{{ genres?.length }}</mat-card-content>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>Оборот [DEMO]</mat-card-title>
+      <mat-card-subtitle>Сумма покупок в рублях</mat-card-subtitle>
+      <mat-card-content class="revenue">1 567 980</mat-card-content>
+    </mat-card>
+  </div>
 </div>

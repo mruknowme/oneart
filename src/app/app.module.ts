@@ -31,7 +31,8 @@ import { MatButtonModule,
   MatFormFieldModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatCardModule
 } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -101,6 +102,7 @@ import { SettingsComponent } from './components/admin/settings/settings.componen
     MatSelectModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatCardModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],
