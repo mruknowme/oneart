@@ -55,6 +55,7 @@ import { WorksEditComponent } from './components/admin/works-edit/works-edit.com
 import { GenresDeleteComponent } from './components/admin/genres-delete/genres-delete.component';
 import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.component';
 import { SettingsComponent } from './components/admin/settings/settings.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { SettingsComponent } from './components/admin/settings/settings.componen
     WorksEditComponent,
     GenresDeleteComponent,
     GenresEditComponent,
-    SettingsComponent
+    SettingsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

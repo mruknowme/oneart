@@ -10,6 +10,7 @@ import { WorksComponent } from './components/admin/works/works.component';
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { CreatorsComponent } from './components/admin/creators/creators.component';
 import { SettingsComponent } from './components/admin/settings/settings.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent,
         data: { page: 'about' }
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
+        data: { page: 'contact' }
       },
       {
         path: 'works/:alias',
