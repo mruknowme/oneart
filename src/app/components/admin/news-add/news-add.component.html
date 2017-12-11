@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Добавить новость</h2>
+<form [formGroup]="newsAddForm">
+<mat-dialog-content class="news-add-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Заголовок" formControlName="title">
+  </mat-form-field>
+  <div *ngIf="newsAddForm.controls.title.invalid && (newsAddForm.controls.title.touched || newsAddForm.controls.title.dirty)">
+    <mat-error *ngIf="newsAddForm.controls.title.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.title.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.title.errors.maxlength">Это поле должно содержать не более 50-ти символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Превью" formControlName="desc_brief"></textarea>
+  </mat-form-field>
+  <div *ngIf="newsAddForm.controls.desc_brief.invalid && (newsAddForm.controls.desc_brief.touched || newsAddForm.controls.desc_brief.dirty)">
+    <mat-error *ngIf="newsAddForm.controls.desc_brief.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.desc_brief.errors.minlength">Это поле должно содержать не менее 10-ти символов</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.desc_brief.errors.maxlength">Это поле должно содержать не более 300 символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Полный текст новости" formControlName="desc_full"></textarea>
+  </mat-form-field>
+  <div *ngIf="newsAddForm.controls.desc_full.invalid && (newsAddForm.controls.desc_full.touched || newsAddForm.controls.desc_full.dirty)">
+    <mat-error *ngIf="newsAddForm.controls.desc_full.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.desc_full.errors.minlength">Это поле должно содержать не менее 100-ти символов</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.desc_full.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Ссылка" formControlName="link">
+  </mat-form-field>
+  <div *ngIf="newsAddForm.controls.link.invalid && (newsAddForm.controls.link.touched || newsAddForm.controls.link.dirty)">
+    <mat-error *ngIf="newsAddForm.controls.link.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.link.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.link.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+    <mat-error *ngIf="newsAddForm.controls.link.errors.pattern">Это поле должно только строчные латинские буквы, цифры и прочерк (без пробелов)</mat-error>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Дата старта" formControlName="date_start" type="date">
+    </mat-form-field>
+    <div *ngIf="newsAddForm.controls.date_start.invalid && (newsAddForm.controls.date_start.touched || newsAddForm.controls.date_start.dirty)">
+      <mat-error *ngIf="newsAddForm.controls.date_start.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Дата снятия" formControlName="date_end" type="date">
+    </mat-form-field>
+    <div *ngIf="newsAddForm.controls.date_end.invalid && (newsAddForm.controls.date_end.touched || newsAddForm.controls.date_end.dirty)">
+      <mat-error *ngIf="newsAddForm.controls.date_end.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions class="news-add-dialog-actions">
+    <button mat-button mat-dialog-close>Отменить</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="newsAddForm.invalid" (click)="onSubmit($event.target, 'Добавляю...')">Добавить новость</button>
+  </mat-dialog-actions>
+</form>

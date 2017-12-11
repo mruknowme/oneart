@@ -56,6 +56,8 @@ import { GenresDeleteComponent } from './components/admin/genres-delete/genres-d
 import { GenresEditComponent } from './components/admin/genres-edit/genres-edit.component';
 import { SettingsComponent } from './components/admin/settings/settings.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { NewsComponent } from './components/admin/news/news.component';
+import { NewsAddComponent } from './components/admin/news-add/news-add.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +84,9 @@ import { ContactComponent } from './components/contact/contact.component';
     GenresDeleteComponent,
     GenresEditComponent,
     SettingsComponent,
-    ContactComponent
+    ContactComponent,
+    NewsComponent,
+    NewsAddComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +113,7 @@ import { ContactComponent } from './components/contact/contact.component';
     AngularFirestoreModule.enablePersistence()
   ],
   entryComponents: [
+    NewsAddComponent,
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
     GenresAddComponent, GenresEditComponent, GenresDeleteComponent

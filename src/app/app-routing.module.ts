@@ -6,6 +6,7 @@ import { WorkComponent } from './components/work/work.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { VisitorLayoutComponent } from './components/layouts/visitor-layout/visitor-layout.component';
 import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
+import { NewsComponent } from './components/admin/news/news.component';
 import { WorksComponent } from './components/admin/works/works.component';
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { CreatorsComponent } from './components/admin/creators/creators.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'news',
+        component: NewsComponent
       },
       {
         path: 'works',

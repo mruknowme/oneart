@@ -1,0 +1,66 @@
+<div class="admin-news">
+  <div class="admin-header">
+    <div class="admin-title">
+      <h2>Новости</h2>
+      <small>Управление всеми новостями</small>
+    </div>
+    <div class="admin-buttons">
+      <button mat-raised-button color="primary" (click)="openDialog()">Добавить <mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+  <div>
+  </div>
+  <div class="admin-table-container">
+    <div class="table-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Заголовок </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="desc_brief">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Превью </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.desc_brief}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="link">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ссылка </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.link}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="date_start">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата старта </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date_start | date:'short':'':'ru'}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="date_end">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата окончания </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date_end | date:'longDate':'':'ru'}} </mat-cell>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="delete(element.id)"><mat-icon>delete</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>      
+</div>
