@@ -38,7 +38,7 @@ export class NewsAddComponent implements OnInit {
       desc_full: [ '', [Validators.required, Validators.minLength(100), Validators.maxLength(5000)] ],
       link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z0-9-]*$')] ],
       date_start: [ '', [Validators.required] ],
-      date_end: [ '', [Validators.required] ],
+      date_end: [ '', [Validators.required] ]
     });
   }
 

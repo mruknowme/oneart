@@ -32,7 +32,11 @@ import { MatButtonModule,
   MatSelectModule,
   MatSnackBarModule,
   MatSlideToggleModule,
-  MatCardModule
+  MatCardModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  DateAdapter,
+  MAT_DATE_FORMATS
 } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -48,8 +52,6 @@ import { CreatorsEditComponent } from './components/admin/creators-edit/creators
 import { CreatorsDeleteComponent } from './components/admin/creators-delete/creators-delete.component';
 import { GenresComponent } from './components/admin/genres/genres.component';
 import { GenresAddComponent } from './components/admin/genres-add/genres-add.component';
-
-import { DataService } from './services/admin/data.service';
 import { WorksDeleteComponent } from './components/admin/works-delete/works-delete.component';
 import { WorksEditComponent } from './components/admin/works-edit/works-edit.component';
 import { GenresDeleteComponent } from './components/admin/genres-delete/genres-delete.component';
@@ -58,6 +60,12 @@ import { SettingsComponent } from './components/admin/settings/settings.componen
 import { ContactComponent } from './components/contact/contact.component';
 import { NewsComponent } from './components/admin/news/news.component';
 import { NewsAddComponent } from './components/admin/news-add/news-add.component';
+import { NewsDeleteComponent } from './components/admin/news-delete/news-delete.component';
+import { NewsEditComponent } from './components/admin/news-edit/news-edit.component';
+
+import { DataService } from './services/admin/data.service';
+
+import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
 
 @NgModule({
   declarations: [
@@ -86,7 +94,9 @@ import { NewsAddComponent } from './components/admin/news-add/news-add.component
     SettingsComponent,
     ContactComponent,
     NewsComponent,
-    NewsAddComponent
+    NewsAddComponent,
+    NewsDeleteComponent,
+    NewsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -109,16 +119,18 @@ import { NewsAddComponent } from './components/admin/news-add/news-add.component
     MatSnackBarModule,
     MatSlideToggleModule,
     MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence()
   ],
   entryComponents: [
-    NewsAddComponent,
+    NewsAddComponent, NewsEditComponent, NewsDeleteComponent,
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
     GenresAddComponent, GenresEditComponent, GenresDeleteComponent
   ],
-  providers: [DataService],
+  providers: [ DataService, { provide: DateAdapter, useClass: AppDateAdapter }, { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

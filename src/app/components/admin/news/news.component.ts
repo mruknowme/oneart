@@ -4,6 +4,8 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { NewsAddComponent } from '../news-add/news-add.component';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { NewsDeleteComponent } from '../news-delete/news-delete.component';
+import { NewsEditComponent } from '../news-edit/news-edit.component';
 
 export interface News {
   created_at: string;
@@ -69,30 +71,30 @@ export class NewsComponent implements AfterViewInit {
 
   edit(id) {
     console.log(id);
-    // const dialogRef = this.dialog.open(CreatorsEditComponent, {
-    //   width: 'auto',
-    //   height: 'auto',
-    //   minWidth: '50%',
-    //   data: { id: id }
-    // });
+    const dialogRef = this.dialog.open(NewsEditComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   result === true ? console.log('saved') : console.log('closed, not saved');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
   }
 
   delete(id) {
     console.log(id);
-    // const dialogRef = this.dialog.open(CreatorsDeleteComponent, {
-    //   width: 'auto',
-    //   height: 'auto',
-    //   minWidth: '50%',
-    //   data: { id: id }
-    // });
+    const dialogRef = this.dialog.open(NewsDeleteComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   result === true ? console.log('deleted') : console.log('closed, not deleted');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('deleted') : console.log('closed, not deleted');
+    });
   }
 
 }

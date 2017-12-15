@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>Редактировать новость {{ (news$ | async)?.title }}</h2>
+<form [formGroup]="newsEditForm">
+<mat-dialog-content class="news-edit-dialog">
+  <mat-form-field>
+    <input matInput placeholder="Заголовок" formControlName="title" [(ngModel)]="news.title">
+  </mat-form-field>
+  <div *ngIf="newsEditForm.controls.title.invalid && (newsEditForm.controls.title.touched || newsEditForm.controls.title.dirty)">
+    <mat-error *ngIf="newsEditForm.controls.title.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.title.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.title.errors.maxlength">Это поле должно содержать не более 50-ти символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Превью" formControlName="desc_brief" [(ngModel)]="news.desc_brief"></textarea>
+  </mat-form-field>
+  <div *ngIf="newsEditForm.controls.desc_brief.invalid && (newsEditForm.controls.desc_brief.touched || newsEditForm.controls.desc_brief.dirty)">
+    <mat-error *ngIf="newsEditForm.controls.desc_brief.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.desc_brief.errors.minlength">Это поле должно содержать не менее 10-ти символов</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.desc_brief.errors.maxlength">Это поле должно содержать не более 300 символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Полный текст новости" formControlName="desc_full" [(ngModel)]="news.desc_full"></textarea>
+  </mat-form-field>
+  <div *ngIf="newsEditForm.controls.desc_full.invalid && (newsEditForm.controls.desc_full.touched || newsEditForm.controls.desc_full.dirty)">
+    <mat-error *ngIf="newsEditForm.controls.desc_full.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.desc_full.errors.minlength">Это поле должно содержать не менее 100-ти символов</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.desc_full.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+  </div>
+
+  <mat-form-field>
+    <input matInput placeholder="Ссылка" formControlName="link" [(ngModel)]="news.link">
+  </mat-form-field>
+  <div *ngIf="newsEditForm.controls.link.invalid && (newsEditForm.controls.link.touched || newsEditForm.controls.link.dirty)">
+    <mat-error *ngIf="newsEditForm.controls.link.errors.required">Это поле обязательное</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.link.errors.minlength">Это поле должно содержать не менее 3-х символов</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.link.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+    <mat-error *ngIf="newsEditForm.controls.link.errors.pattern">Это поле должно только строчные латинские буквы, цифры и прочерк (без пробелов)</mat-error>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <!-- <input matInput placeholder="Дата старта" formControlName="date_start" type="date" [(ngModel)]="news.date_start"> -->
+      <input matInput [matDatepicker]="dateStart" placeholder="Дата старта" formControlName="date_start" [(ngModel)]="news.date_start">
+      <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+      <mat-datepicker #dateStart></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="newsEditForm.controls.date_start.invalid && (newsEditForm.controls.date_start.touched || newsEditForm.controls.date_start.dirty)">
+      <mat-error *ngIf="newsEditForm.controls.date_start.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <!-- <input matInput placeholder="Дата снятия" formControlName="date_end" type="date" [(ngModel)]="news.date_end"> -->
+      <input matInput [matDatepicker]="dateEnd" placeholder="Дата снятия" formControlName="date_end" [(ngModel)]="news.date_end">
+      <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+      <mat-datepicker #dateEnd></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="newsEditForm.controls.date_end.invalid && (newsEditForm.controls.date_end.touched || newsEditForm.controls.date_end.dirty)">
+      <mat-error *ngIf="newsEditForm.controls.date_end.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+    
+  </mat-dialog-content>
+  <mat-dialog-actions class="news-edit-dialog-actions">
+    <button mat-button mat-dialog-close>Отменить</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="newsEditForm.invalid" (click)="onSubmit($event.target, 'Сохраняю...')">Сохранить новость</button>
+  </mat-dialog-actions>
+</form>

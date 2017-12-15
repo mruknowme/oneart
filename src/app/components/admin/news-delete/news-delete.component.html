@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Удалить новость {{ (news$ | async)?.title }}</h2>
+<mat-dialog-content class="news-delete-dialog">
+  <h3>Вы уверены, что хотите удалить новость?</h3>
+  <p>Удаление безвозвратно!</p>
+  <br>
+</mat-dialog-content>
+<mat-dialog-actions class="news-delete-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button type="submit" mat-raised-button color="warn" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Удаляю...')">Удалить новость</button>
+</mat-dialog-actions>
