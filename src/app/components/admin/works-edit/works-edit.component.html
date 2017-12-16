@@ -34,7 +34,7 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput placeholder="Описание" formControlName="description" [(ngModel)]="work.description"></textarea>
+    <textarea matInput [froalaEditor] placeholder="Описание" formControlName="description" [(ngModel)]="work.description"></textarea>
   </mat-form-field>
   <div *ngIf="worksEditForm.controls.description.invalid && (worksEditForm.controls.description.touched || worksEditForm.controls.description.dirty)">
     <mat-error *ngIf="worksEditForm.controls.description.errors.required">Это поле обязательное</mat-error>
@@ -63,14 +63,6 @@
       <mat-error *ngIf="worksEditForm.controls.link.errors.pattern">Это поле должно содержать строчные латинские буквы, цифры, прочерк и нижнее подчеркивание</mat-error>
     </div>
   </div>
-  {{ worksEditForm.controls.title.status | json }} 
-  {{ worksEditForm.controls.genre.status | json }} 
-  {{ worksEditForm.controls.genre_alias.status | json }} 
-  {{ worksEditForm.controls.creator.status | json }} 
-  {{ worksEditForm.controls.creator_username.status | json }} 
-  {{ worksEditForm.controls.description.status | json }} 
-  {{ worksEditForm.controls.price.status | json }} 
-  {{ worksEditForm.controls.link.status | json }} 
 </mat-dialog-content>
 <mat-dialog-actions class="work-edit-dialog-actions">
   <button mat-button mat-dialog-close>Отменить</button>

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { DragScrollModule } from 'ngx-drag-scroll';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { environment } from '../environments/environment';
 
 import { registerLocaleData } from '@angular/common';
@@ -69,6 +70,8 @@ import { NewsEditComponent } from './components/admin/news-edit/news-edit.compon
 import { DataService } from './services/admin/data.service';
 
 import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
+import { NewsSingleComponent } from './components/news-single/news-single.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -101,7 +104,9 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
     NewsComponent,
     NewsAddComponent,
     NewsDeleteComponent,
-    NewsEditComponent
+    NewsEditComponent,
+    NewsSingleComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -128,7 +133,9 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
     MatNativeDateModule,
     MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   entryComponents: [
     NewsAddComponent, NewsEditComponent, NewsDeleteComponent,

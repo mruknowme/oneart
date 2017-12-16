@@ -1,0 +1,7 @@
+<div class="newsSingle-wrapper">
+  <div *ngFor="let news of news$ | async">
+    <h2>{{ news.title }}</h2>
+    <small>{{ news.date_start | date:'longDate':'ru' }}</small>
+    <div [innerHTML]="news.desc_full | safeHtml" class="newsSingle-desc cleanslate"></div>
+  </div>
+</div>

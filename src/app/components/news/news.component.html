@@ -9,7 +9,7 @@
     <p class="news-item-date">{{ news.date_start | date:'longDate':'ru' }}</p>
     <hr>
     <div class="news-item-footer">
-      <div class="news-item-btn-full">Подробнее &gt;&gt;</div>
+      <div class="news-item-btn-full" routerLink="/news/{{ news.link }}">Подробнее &gt;&gt;</div>
     </div>
   </div>
 </div>

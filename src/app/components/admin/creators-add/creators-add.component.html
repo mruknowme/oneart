@@ -21,7 +21,7 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput placeholder="Биография" formControlName="about"></textarea>
+    <textarea matInput [froalaEditor] placeholder="Биография" formControlName="about"></textarea>
   </mat-form-field>
   <div *ngIf="creatorsAddForm.controls.about.invalid && (creatorsAddForm.controls.about.touched || creatorsAddForm.controls.about.dirty)">
     <mat-error *ngIf="creatorsAddForm.controls.about.errors.required">Это поле обязательное</mat-error>
