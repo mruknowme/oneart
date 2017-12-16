@@ -29,6 +29,9 @@ export class WorkComponent implements OnInit {
   workRef: AngularFirestoreCollection<Work>;
   work$: Observable<Work[]>;
 
+  preview = false;
+  previewSrc: string;
+
   @ViewChild('workImageSlider', {read: DragScroll}) ds: DragScroll;
 
   constructor(private afs: AngularFirestore, private activatedRoute: ActivatedRoute) {
@@ -41,6 +44,17 @@ export class WorkComponent implements OnInit {
 
   moveRight() {
     this.ds.moveRight();
+  }
+
+  moveLeft() {
+    this.ds.moveLeft();
+  }
+
+  togglePreview(event, src?) {
+    if (event.target === event.currentTarget) {
+      this.preview = !this.preview;
+      src ? this.previewSrc = src : this.previewSrc = null;
+    }
   }
 
   ngOnInit() {

@@ -1,11 +1,21 @@
+<div *ngIf="preview" class="preview-overlay" (click)="togglePreview($event, null)">
+  <img [src]="previewSrc" alt="">
+  <div class="light light-top"></div>
+  <div class="light light-right"></div>
+  <div class="light light-bottom"></div>
+  <div class="light light-left"></div>
+</div>
 <div class="work" *ngFor="let work of work$ | async">
   <h1 class="work-title">{{ work.title }}</h1>
   <small class="work-genre">{{ work.genre }}</small>
+  <!-- TODO: -->
   <!-- Implement logic for only one image => no slider, position center -->
-  <!-- Find plugin or code image full view -->
-  <div #workImageSlider drag-scroll drag-scroll-y-disabled="true" snap-disabled="true" class="work-image-slider">
-    <img *ngFor="let workImage of work.images"src="{{ workImage }}" alt="">
-    <div (click)="moveRight()">&gt;</div>
+  <div *ngIf="work.images?.length > 1" #workImageSlider drag-scroll drag-scroll-y-disabled="true" snap-disabled="true" class="work-image-slider">
+    <img *ngFor="let workImage of work.images" src="{{ workImage }}" (click)="togglePreview($event, workImage)" alt="">
+  </div>
+  <div *ngIf="work.images?.length > 1" class="work-image-slider-controls">
+    <div (click)="moveLeft()"><i class="material-icons">chevron_left</i></div>
+    <div (click)="moveRight()"><i class="material-icons">chevron_right</i></div>
   </div>
   <div class="work-content">
     <div class="work-description">
@@ -31,7 +41,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <button class="work-btn-buy">Купить за {{ work.price }} руб.</button>
+            <button class="work-btn-buy">Купить за {{ work.price | number:'1.2':'ru' }} руб.</button>
           </td>
         </tr>
       </table>

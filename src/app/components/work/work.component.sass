@@ -1,3 +1,70 @@
+@keyframes overlay
+    from
+        transform: scale(0.1)
+    to
+        transform: scale(1)
+
+.preview-overlay
+    position: fixed
+    display: flex
+    justify-content: center
+    align-items: center
+    top: 0
+    left: 0
+    height: 100vh
+    max-height: 100vh
+    width: 100vw
+    max-width: 100vw
+    overflow: hidden
+    background-color: rgba(black, 0.85)
+    background-image: url('https://www.transparenttextures.com/patterns/brilliant.png')
+    background-repeat: repeat
+    background-position: center center
+    animation: overlay 0.35s ease-out forwards
+    transition: all 0.35s ease-out
+    z-index: 100
+    img
+        max-width: 95vw
+        max-height: 95vh
+        box-shadow: 0px 4px 7px 8px rgba(black, 0.55)
+        border-radius: 5px
+        z-index: 101
+        animation: overlay 0.35s ease-out forwards
+        animation-delay: 0.35s
+        transform: scale(0)
+    .light
+        position: fixed
+        width: 33vw
+        height: 5px
+        background-color: rgba(white, 0.13)
+    .light-top
+        width: 33vw
+        height: 5px
+        top: 0
+        margin: 0 auto
+        border-radius: 0 0 50% 50%
+        box-shadow: 0 10px 4rem 2rem rgba(white, 0.15)
+    .light-right
+        width: 5px
+        height: 33vh
+        right: 0
+        margin: auto 0
+        border-radius: 50% 0 0 50%
+        box-shadow: -10px 0 4rem 2rem rgba(white, 0.15)
+    .light-bottom
+        width: 33vw
+        height: 5px
+        bottom: 0
+        margin: 0 auto
+        border-radius: 50% 50% 0 0
+        box-shadow: 0px -10px 4rem 2rem rgba(white, 0.15)
+    .light-left
+        width: 5px
+        height: 33vh
+        left: 0
+        margin: auto 0
+        border-radius: 0 50% 50% 0
+        box-shadow: 10px 0 4rem 2rem rgba(white, 0.15)
 .work-title 
     font-size: 2.5rem
     font-weight: 700
@@ -13,6 +80,30 @@
     width: 100%
     img
         height: 300px
+.work-image-slider-controls
+    // display: flex
+    // justify-content: space-between
+    position: relative
+    transform: translateY(calc(-150px - 2rem))
+    div
+        display: inline-block
+        position: absolute
+        background-color: rgba(black, 0.6)
+        padding: 0.5rem
+        cursor: pointer
+        transition: all 0.35s ease-out
+        &:hover
+            background-color: rgba(black, 1)
+            box-shadow: 2px 2px 8px 2px rgba(black, 0.35)
+        &:nth-of-type(1)
+            left: 0
+            transform: translateX(-15px)
+        &:nth-of-type(2)
+            right: 0
+            transform: translateX(15px)
+        i
+            font-size: 3rem
+            color: white
 .work-content
     display: flex
     margin-top: 2rem
