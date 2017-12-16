@@ -16,10 +16,10 @@
   </div>
   <address class="menu-contact-item">
     <h3>Телефон</h3>
-    <p>+7(342) 299-99-99</p>
+    <p><a href="tel:+{{ site.phone_main | onlyNumbers }}">{{ site.phone_main }}</a></p>
   </address>
   <address class="menu-contact-item">
     <h3>Email</h3>
-    <p>info@oneart.ru</p>
+    <p><a href="mailto:{{ site.email_general }}">{{ site.email_general }}</a></p>
   </address>
 </div>

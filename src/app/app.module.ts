@@ -72,6 +72,7 @@ import { DataService } from './services/admin/data.service';
 import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
 import { NewsSingleComponent } from './components/news-single/news-single.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { OnlyNumbersPipe } from './pipes/only-numbers.pipe';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     NewsDeleteComponent,
     NewsEditComponent,
     NewsSingleComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    OnlyNumbersPipe
   ],
   imports: [
     BrowserModule,
