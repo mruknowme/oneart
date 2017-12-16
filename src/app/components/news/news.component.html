@@ -1,3 +1,11 @@
-<p>
-  news works!
-</p>
+<div [@goals]="newsList?.length" class="news-container">
+  <div *ngFor="let news of newsList" class="news-item">
+    <h2>{{ news.title }}</h2>
+    {{ news.desc_brief }}
+    <p class="news-item-date">{{ news.date_start | date:'longDate':'ru' }}</p>
+    <hr>
+    <div class="news-item-footer">
+      <div class="news-item-btn-full">Подробнее &gt;&gt;</div>
+    </div>
+  </div>
+</div>
