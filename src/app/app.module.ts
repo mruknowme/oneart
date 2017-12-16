@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
+import { GenresUserComponent } from './components/genres/genres.component';
 import { AboutComponent } from './components/about/about.component';
 import { WorkComponent } from './components/work/work.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
@@ -73,6 +74,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
     MenuComponent,
     HomeComponent,
     AboutComponent,
+    GenresUserComponent,
     WorkComponent,
     DashboardComponent,
     VisitorLayoutComponent,

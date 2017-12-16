@@ -1,0 +1,28 @@
+<div class="genres-wrapper">
+  <h2>Жанры</h2>
+  <small>Ознакомьтесь с картинами разных жанров</small>
+
+  <nav class="genres-menu">
+    <ul>
+      <li *ngFor="let genre of genresList" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLink="/genres/{{genre.alias}}" (click)="switchGenre(genre.alias)" class="hvr-underline-from-left">{{genre.title}}</li>
+    </ul>
+  </nav>
+  
+  <div class="gallery" [@goals]="worksList?.length">
+
+    <div *ngFor="let work of worksList" class="gallery-item">
+      <div class="gallery-item-photo" [ngStyle]="{'background-image': 'url(' + work.images[0] + ')'}">
+        
+      </div>
+      <div class="gallery-item-body">
+        <div routerLink="/works/{{ work.link }}" class="gallery-item-button">Подробнее</div>
+        <div routerLink="/buy/{{ work.link }}" class="gallery-item-button">Купить</div>
+      </div>
+      <div class="gallery-item-footer">
+        <h3>{{ work.title }}</h3>
+        <small>{{ work.genre }} / {{ work.creator }}</small>
+      </div>
+    </div>
+  
+  </div>
+</div>

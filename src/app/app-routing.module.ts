@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { GenresUserComponent } from './components/genres/genres.component';
 import { AboutComponent } from './components/about/about.component';
 import { WorkComponent } from './components/work/work.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
@@ -22,6 +23,16 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'genres',
+        component: GenresUserComponent,
+        data: { page: 'genres' }
+      },
+      {
+        path: 'genres/:genre',
+        component: GenresUserComponent,
+        data: { page: 'genresSpecific' }
       },
       {
         path: 'about',
