@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, style, transition, animate, keyframes, query, stagger } from '@angular/animations';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import 'rxjs/add/operator/mergeMap';
 import { Observable } from 'rxjs/Observable';
+
+declare var particlesJS;
 
 export interface News {
   created_at: string;
@@ -49,13 +51,22 @@ export class NewsUserComponent implements OnInit {
 
   newsList: News[];
 
+  particlesLoaded = false;
+
   constructor(private afs: AngularFirestore) {
+    // TODO: implement functionality for news not appearing befor/after expiration date
     this.newsColRef = this.afs.collection<News>('news', ref => ref.orderBy('created_at'));
     this.news$ = this.newsColRef.valueChanges();
     this.news$.subscribe(data => this.newsList = data);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await particlesJS.load('particles-js', '/assets/particles.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
+    setTimeout(() => {
+      this.particlesLoaded = true;
+    }, 1000);
   }
 
 }

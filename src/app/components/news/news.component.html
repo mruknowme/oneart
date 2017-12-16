@@ -1,3 +1,7 @@
+<div [ngClass]="particlesLoaded ? 'loaded' : ''" id="particles-js">
+  <h1>One Art</h1>
+  <small>Место, где живет настоящее исскуство</small>
+</div>
 <div [@goals]="newsList?.length" class="news-container">
   <div *ngFor="let news of newsList" class="news-item">
     <h2>{{ news.title }}</h2>
