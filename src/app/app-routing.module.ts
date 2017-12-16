@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { GenresUserComponent } from './components/genres/genres.component';
+import { NewsUserComponent } from './components/news/news.component';
 import { AboutComponent } from './components/about/about.component';
 import { WorkComponent } from './components/work/work.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent,
+        component: NewsUserComponent,
         pathMatch: 'full'
       },
       {
@@ -43,6 +44,11 @@ const routes: Routes = [
         path: 'contact',
         component: ContactComponent,
         data: { page: 'contact' }
+      },
+      {
+        path: 'works',
+        component: HomeComponent,
+        data: { page: 'home' }
       },
       {
         path: 'works/:alias',
@@ -81,7 +87,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: NewsUserComponent }
 ];
 
 @NgModule({
