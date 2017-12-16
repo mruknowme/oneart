@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import 'rxjs/add/operator/mergeMap';
 import { Observable } from 'rxjs/Observable';
+import { DragScroll } from 'ngx-drag-scroll';
 
 export interface Work {
   created_at: string;
@@ -28,12 +29,18 @@ export class WorkComponent implements OnInit {
   workRef: AngularFirestoreCollection<Work>;
   work$: Observable<Work[]>;
 
+  @ViewChild('workImageSlider', {read: DragScroll}) ds: DragScroll;
+
   constructor(private afs: AngularFirestore, private activatedRoute: ActivatedRoute) {
     this.workRef = this.afs.collection('works', ref => {
       return ref.where('link', '==', this.activatedRoute.snapshot.params.alias)
                 .limit(1);
     });
     this.work$ = this.workRef.valueChanges();
+  }
+
+  moveRight() {
+    this.ds.moveRight();
   }
 
   ngOnInit() {

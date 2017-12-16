@@ -1,7 +1,12 @@
 <div class="work" *ngFor="let work of work$ | async">
   <h1 class="work-title">{{ work.title }}</h1>
   <small class="work-genre">{{ work.genre }}</small>
-  <img src="{{ work.images[0] }}" alt="">
+  <!-- Implement logic for only one image => no slider, position center -->
+  <!-- Find plugin or code image full view -->
+  <div #workImageSlider drag-scroll drag-scroll-y-disabled="true" snap-disabled="true" class="work-image-slider">
+    <img *ngFor="let workImage of work.images"src="{{ workImage }}" alt="">
+    <div (click)="moveRight()">&gt;</div>
+  </div>
   <div class="work-content">
     <div class="work-description">
       <h2>Описание картины</h2>

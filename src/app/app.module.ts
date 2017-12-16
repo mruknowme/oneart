@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { DragScrollModule } from 'ngx-drag-scroll';
 import { environment } from '../environments/environment';
 
 import { registerLocaleData } from '@angular/common';
@@ -105,6 +106,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    DragScrollModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
