@@ -10,3 +10,14 @@
 .content
     width: calc(100% - 250px)
     padding: 2em
+
+@media screen and (max-width: 900px)
+    .wrapper
+        flex-wrap: wrap
+    .menu, .content
+        width: 100%
+        padding: 1rem 1rem
+    .menu
+        .menu-nav
+            // transform: translateY(-200%)
+            width: 100%

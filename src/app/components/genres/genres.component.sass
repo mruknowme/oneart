@@ -81,3 +81,43 @@
         color: #333333
         font-weight: 100
         font-size: 1rem
+
+@media screen and (max-width: 1366px)
+    .gallery
+        grid-template-columns: 1fr 1fr 1fr
+    .gallery-item
+        &:hover
+            .gallery-item-photo
+                height: calc(100vw / 3 - 6 * 2rem - 2.75rem)
+    .gallery-item-photo
+        height: calc(100vw / 3 - 6 * 2rem)
+
+@media screen and (max-width: 1024px)
+    .gallery
+        grid-template-columns: 1fr 1fr
+    .gallery-item
+        &:hover
+            .gallery-item-photo
+                height: calc(100vw / 2 - 7 * 2rem - 2.75rem)
+    .gallery-item-photo
+        height: calc(100vw / 2 - 7 * 2rem)
+
+@media screen and (max-width: 900px)
+    .gallery
+        grid-template-columns: 1fr 1fr
+    .gallery-item
+        &:hover
+            .gallery-item-photo
+                height: calc(100vw / 2 - 4 * 2rem - 2.75rem)
+    .gallery-item-photo
+        height: calc(100vw / 2 - 4 * 2rem)
+
+@media screen and (max-width: 900px)
+    .gallery
+        grid-template-columns: 1fr
+    .gallery-item
+        &:hover
+            .gallery-item-photo
+                height: calc(100vw / 1 - 6 * 2rem - 2.75rem)
+    .gallery-item-photo
+        height: calc(100vw / 1 - 6 * 2rem)

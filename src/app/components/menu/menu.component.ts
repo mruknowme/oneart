@@ -27,6 +27,8 @@ export class MenuComponent implements OnInit {
     status: true
   };
 
+  public mobileMenuOpen = false;
+
   constructor(private afs: AngularFirestore) {
     this.siteDocRef = this.afs.doc<Site>('site/7gvZVdP6STrS7yK0cqeW');
     this.site$ = this.siteDocRef.valueChanges();

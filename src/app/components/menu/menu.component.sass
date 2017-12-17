@@ -28,3 +28,81 @@
         text-transform: uppercase
     p
         color: #7c7c7c
+
+@keyframes mobileMenu
+    from
+        display: none
+        transform: translateY(-200%)
+    to
+        display: block
+        transform: translateY(0)
+
+@media screen and (max-width: 900px)
+    .menu-brand
+        display: flex
+        justify-content: space-between
+        h1
+            padding-left: 0.75rem
+            font-weight: 900
+            font-size: 1.75rem
+    .mobile-menu-toggler
+        width: 24px
+        height: 24px
+        margin-top: 0.5rem
+        margin-right: 0.75rem
+        perspective: 300
+        cursor: pointer
+        div
+            width: 100%
+            height: 4px
+            margin: 2px
+            background-color: rgba(#333333, 0.7)
+            transition: all 0.35s ease-out
+        &:hover
+            div
+                background-color: rgba(black, 0.95)
+        &--open
+            div:nth-of-type(1)
+                transform-origin: center center
+                transform: translateY(6px) rotate(45deg)
+            div:nth-of-type(2)
+                transform: translateZ(-100px)
+                opacity: 0
+            div:nth-of-type(3)
+                transform-origin: center center
+                transform: translateY(-6px) rotate(-45deg)
+    .menu-nav
+        background-color: #f4f4f4
+        box-shadow: 0 10px 15px rgba(black, 0.2)
+        transform: translateY(-200%)
+        display: none
+        ul
+            li
+                text-align: center
+    .menu-nav-mobile--open
+        display: block
+        transition: all 0.35s ease-out
+        animation: mobileMenu 0.35s ease-out forwards alternate
+    .menu-contact
+        display: flex
+        justify-content: space-between
+    .menu-contact-item
+        h3
+            display: none
+    .menu-contact-phone
+        font-size: 2rem
+        a
+            color: black
+
+@media screen and (max-width: 550px)
+    .menu-contact
+        flex-wrap: wrap
+    .menu-contact-item
+        width: 100%
+        text-align: center
+    .menu-contact-phone
+        order: 1
+    .menu-contact-email
+        order: 2
+    .menu-contact-address
+        order: 3

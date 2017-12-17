@@ -241,7 +241,7 @@
             &:last-child
                 border: none
             td
-                padding: 1rem 0
+                padding: 1rem 0.5rem
                 color: #555555
                 &:first-child
                     color: #333333
@@ -260,3 +260,20 @@
     letter-spacing: 2px
     &:hover
         background-color: rgba(#000000, 0.85)
+
+@media screen and (max-width: 1200px)
+    .work-description
+        width: 60%
+    .work-details
+        width: 40%
+@media screen and (max-width: 900px)
+    .work-content
+        flex-wrap: wrap
+    .work-description
+        width: 100%
+        order: 2
+        padding: 1rem 0
+    .work-details
+        width: 100%
+        order: 1
+        padding: 1rem 0

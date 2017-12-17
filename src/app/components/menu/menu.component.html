@@ -1,7 +1,12 @@
 <div class="menu-brand">
-  OneArt
+  <h1>OneArt</h1>
+  <div class="mobile-menu-toggler" [ngClass]="mobileMenuOpen ? 'mobile-menu-toggler--open' : ''" (click)="mobileMenuOpen = !mobileMenuOpen">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
-<nav class="menu-nav">
+<nav class="menu-nav" [ngClass]="mobileMenuOpen ? 'menu-nav-mobile--open' : ''">
   <ul>
     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="hvr-underline-from-left"><a routerLink="/">Главная</a></li>
     <li [routerLinkActive]="['active']" routerLink="/works" class="hvr-underline-from-left">Все картины</li>
@@ -11,14 +16,14 @@
   </ul>
 </nav>
 <div class="menu-contact">
-  <div class="menu-contact-item">
+  <div class="menu-contact-item menu-contact-address">
     <a routerLink="/">Адрес на карте</a>
   </div>
-  <address class="menu-contact-item">
+  <address class="menu-contact-item menu-contact-phone">
     <h3>Телефон</h3>
     <p><a href="tel:+{{ site.phone_main | onlyNumbers }}">{{ site.phone_main }}</a></p>
   </address>
-  <address class="menu-contact-item">
+  <address class="menu-contact-item menu-contact-email">
     <h3>Email</h3>
     <p><a href="mailto:{{ site.email_general }}">{{ site.email_general }}</a></p>
   </address>
