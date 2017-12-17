@@ -1,0 +1,201 @@
+[debug] [2017-12-17T07:28:31.982Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:31.984Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:31.984Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:31.984Z] Platform:      darwin
+[debug] [2017-12-17T07:28:31.984Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:31.984Z] Time:          Sun Dec 17 2017 18:28:31 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:31.984Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:31.995Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:31.995Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:31.997Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:31 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:32.920Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:32.921Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:32 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:33.685Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:35.533Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:35.535Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:35.535Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:35.535Z] Platform:      darwin
+[debug] [2017-12-17T07:28:35.535Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:35.536Z] Time:          Sun Dec 17 2017 18:28:35 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:35.536Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:35.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:35.545Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:35.546Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:35 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:36.362Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:36.363Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:36 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:37.089Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:39.029Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:39.031Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:39.031Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:39.031Z] Platform:      darwin
+[debug] [2017-12-17T07:28:39.031Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:39.032Z] Time:          Sun Dec 17 2017 18:28:39 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:39.032Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:39.041Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:39.042Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:39.043Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:39 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:40.366Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:40.367Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:40 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:41.133Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:42.959Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:42.961Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:42.961Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:42.961Z] Platform:      darwin
+[debug] [2017-12-17T07:28:42.961Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:42.962Z] Time:          Sun Dec 17 2017 18:28:42 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:42.962Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:42.972Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:42.972Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:42.974Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:42 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:44.040Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:44.041Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:44 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:44.768Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:46.722Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:46.724Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:46.724Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:46.724Z] Platform:      darwin
+[debug] [2017-12-17T07:28:46.724Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:46.725Z] Time:          Sun Dec 17 2017 18:28:46 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:46.725Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:46.735Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:46.736Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:46.737Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:46 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:47.709Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:47.710Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:47 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:48.385Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:50.191Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:50.193Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:50.193Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:50.194Z] Platform:      darwin
+[debug] [2017-12-17T07:28:50.194Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:50.194Z] Time:          Sun Dec 17 2017 18:28:50 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:50.194Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:50.204Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:50.204Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:50.205Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:50 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:51.196Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:51.197Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:51 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:52.100Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:53.901Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:53.902Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:53.903Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:53.903Z] Platform:      darwin
+[debug] [2017-12-17T07:28:53.903Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:53.903Z] Time:          Sun Dec 17 2017 18:28:53 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:53.903Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:53.912Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:53.912Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:53.914Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:53 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:54.897Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:54.898Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:54 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:55.696Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:28:57.654Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:28:57.656Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:28:57.656Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:28:57.656Z] Platform:      darwin
+[debug] [2017-12-17T07:28:57.656Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:28:57.657Z] Time:          Sun Dec 17 2017 18:28:57 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:57.657Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:28:57.667Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:28:57.667Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:28:57.668Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:28:57 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:58.622Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:28:58.623Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:28:58 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:28:59.381Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'oneart-28ed5'...
+[info] 
+[info] i  deploying functions
+[info] i  functions: running predeploy script.
+[debug] [2017-12-17T07:29:01.172Z] ----------------------------------------------------------------------
+[debug] [2017-12-17T07:29:01.174Z] Command:       /usr/local/Cellar/node/8.9.1/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2017-12-17T07:29:01.174Z] CLI Version:   3.16.0
+[debug] [2017-12-17T07:29:01.174Z] Platform:      darwin
+[debug] [2017-12-17T07:29:01.174Z] Node Version:  v8.9.1
+[debug] [2017-12-17T07:29:01.175Z] Time:          Sun Dec 17 2017 18:29:01 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:29:01.175Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-17T07:29:01.184Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-17T07:29:01.184Z] > authorizing via signed-in user
+[debug] [2017-12-17T07:29:01.186Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/oneart-28ed5  
+  
+ Sun Dec 17 2017 18:29:01 GMT+1100 (AEDT)
+[debug] [2017-12-17T07:29:02.073Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-17T07:29:02.074Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/oneart-28ed5/tokens  
+  
+ Sun Dec 17 2017 18:29:02 GMT+1100 (AEDT)
