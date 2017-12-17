@@ -62,7 +62,7 @@ export class NewsUserComponent implements OnInit {
 
   async ngOnInit() {
     await particlesJS.load('particles-js', '/assets/particles.json', function() {
-      console.log('callback - particles.js config loaded');
+      // console.log('callback - particles.js config loaded');
     });
     setTimeout(() => {
       this.particlesLoaded = true;

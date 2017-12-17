@@ -1,3 +1,42 @@
+<div *ngIf="buyFormOpen" class="buyForm-overlay" (click)="toggleBuyForm($event)" (onSubmit)="onBuySubmit()">
+  <div *ngIf="buyFormOpen && buyFormSubmitted" class="buyForm">
+    <h2>Спасибо за Вашу заявку!</h2>
+    <small>Наш менеджер в скором времени с Вами свяжется для уточнения деталей заказа</small>
+    <h3>Мы желаем Вам хорошего дня!</h3>
+  </div>
+  <div *ngIf="!buyFormSubmitted" class="buyForm">
+    <h2>Отличный выбор!</h2>
+    <small>Отправьте быструю заявку на покупку и Наш менеджер с Вами свяжется</small>
+    <form [formGroup]="buyForm">
+      <input type="text" formControlName="name" placeholder="Имя">
+      <div *ngIf="buyForm.controls.name.invalid && (buyForm.controls.name.touched || buyForm.controls.name.dirty)" class="buyForm-errors">
+        <p *ngIf="buyForm.controls.name.errors.required">Это поле обязательное</p>
+        <p *ngIf="buyForm.controls.name.errors.minlength">Это поле должно содержать не менее 2-х символов</p>
+        <p *ngIf="buyForm.controls.name.errors.maxlength">Это поле должно содержать не более 70-ти символов</p>
+        <!-- <p *ngIf="buyForm.controls.name.errors.pattern">Это поле должно только строчные латинские буквы без пробелов</p> -->
+      </div>
+      <input type="tel" formControlName="phone" placeholder="Телефон">
+      <div *ngIf="buyForm.controls.phone.invalid && (buyForm.controls.phone.touched || buyForm.controls.phone.dirty)" class="buyForm-errors">
+        <p *ngIf="buyForm.controls.phone.errors.required">Это поле обязательное</p>
+        <p *ngIf="buyForm.controls.phone.errors.minlength">Это поле должно содержать не менее 6-ти символов</p>
+        <p *ngIf="buyForm.controls.phone.errors.maxlength">Это поле должно содержать не более 20-ти символов</p>
+        <p *ngIf="buyForm.controls.phone.errors.pattern">Это поле должно только цифры, знак плюс, пробелы, прочерк и круглые скобки</p>
+      </div>
+      <input type="email" formControlName="email" placeholder="Email">
+      <div *ngIf="buyForm.controls.email.invalid && (buyForm.controls.email.touched || buyForm.controls.email.dirty)" class="buyForm-errors">
+        <p *ngIf="buyForm.controls.email.errors.required">Это поле обязательное</p>
+        <p *ngIf="buyForm.controls.email.errors.pattern">Указан некорректный email</p>
+      </div>
+      <textarea placeholder="Сообщение..." formControlName="message"></textarea>
+      <div *ngIf="buyForm.controls.message.invalid && (buyForm.controls.message.touched || buyForm.controls.message.dirty)" class="buyForm-errors">
+        <p *ngIf="buyForm.controls.message.errors.required">Это поле обязательное</p>
+        <p *ngIf="buyForm.controls.message.errors.minlength">Это поле должно содержать не менее 5-ти символов</p>
+        <p *ngIf="buyForm.controls.message.errors.maxlength">Это поле должно содержать не более 5 000 символов</p>
+      </div>
+      <button type="submit" [disabled]="buyForm.invalid" (click)="onBuySubmit()">Отправить заявку</button>
+    </form>
+  </div>
+</div>
 <div *ngIf="preview" class="preview-overlay" (click)="togglePreview($event, null)">
   <img [src]="previewSrc" alt="">
   <div class="light light-top"></div>
@@ -21,7 +60,7 @@
     <div class="work-description">
       <h2>Описание картины</h2>
       <hr>
-      <p>{{ work.description }}</p>
+      <div [innerHtml]="work.description | safeHtml"></div>
     </div>
     <div class="work-details">
       <h2>Детали</h2>
@@ -41,7 +80,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <button class="work-btn-buy">Купить за {{ work.price | number:'1.2':'ru' }} руб.</button>
+            <button class="work-btn-buy" (click)="toggleBuyForm($event)">Купить за {{ work.price | number:'1.2':'ru' }} руб.</button>
           </td>
         </tr>
       </table>

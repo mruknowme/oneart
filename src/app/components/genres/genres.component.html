@@ -8,6 +8,8 @@
     </ul>
   </nav>
   
+  <div *ngIf="genreDesc != ''" [innerHtml]="genreDesc.description | safeHtml" class="genre-desc"></div>
+
   <div class="gallery" [@goals]="worksList?.length">
 
     <div *ngFor="let work of worksList" class="gallery-item">

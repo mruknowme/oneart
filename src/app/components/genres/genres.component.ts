@@ -56,7 +56,9 @@ export class GenresUserComponent implements OnInit {
   genresColRef: AngularFirestoreCollection<Genres>;
   genres$: Observable<Genres[]>;
 
-  genresList: Genres[];
+  genresList: Genres[] = null;
+
+  genreDesc: any = '';
 
   workColRef: AngularFirestoreCollection<Work>;
   works$: Observable<Work[]>;
@@ -74,13 +76,22 @@ export class GenresUserComponent implements OnInit {
                   .orderBy('title');
       });
       this.works$ = this.workColRef.valueChanges();
-      this.works$.subscribe(works => { this.worksList = works; console.log(this.worksList.length); });
+      this.works$.subscribe(works => { this.worksList = works; });
       // implement logic for other content when no works 4 this genre
+      this.getGenreDesc(this.activatedRoute.snapshot.params.genre);
     }
+
+  }
+
+  getGenreDesc(alias) {
+    this.genresColRef = this.afs.collection<Genres>('genres', ref => ref.orderBy('title'));
+    this.genres$ = this.genresColRef.valueChanges();
+    this.genres$.subscribe(data => { this.genreDesc = data.find(genre => genre.alias === alias); });
   }
 
   switchGenre(genre_alias) {
     // add functionality for offline
+    this.getGenreDesc(genre_alias);
     this.workColRef = this.afs.collection('works', ref => {
       return ref.where('genre_alias', '==', genre_alias)
                 .orderBy('title');

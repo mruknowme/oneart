@@ -27,7 +27,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="desc_brief">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Превью </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.desc_brief}} </mat-cell>
+        <mat-cell *matCellDef="let element" [innerHTML]="element.desc_brief | safeHtml"></mat-cell>
       </ng-container>
   
       <!-- Weight Column -->

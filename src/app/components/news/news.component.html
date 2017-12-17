@@ -5,7 +5,7 @@
 <div [@goals]="newsList?.length" class="news-container">
   <div *ngFor="let news of newsList" class="news-item">
     <h2>{{ news.title }}</h2>
-    {{ news.desc_brief }}
+    <div [innerHTML]="news.desc_brief | safeHtml"></div>
     <p class="news-item-date">{{ news.date_start | date:'longDate':'ru' }}</p>
     <hr>
     <div class="news-item-footer">
