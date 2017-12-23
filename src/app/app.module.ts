@@ -39,6 +39,8 @@ import { MatButtonModule,
   MatSnackBarModule,
   MatSlideToggleModule,
   MatCardModule,
+  MatTabsModule,
+  MatChipsModule,
   MatNativeDateModule,
   MatDatepickerModule,
   DateAdapter,
@@ -77,6 +79,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { OnlyNumbersPipe } from './pipes/only-numbers.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { MapComponent } from './components/map/map.component';
+import { RequestsBuyComponent } from './components/admin/requests-buy/requests-buy.component';
+import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
+import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/requests-buy-edit.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +119,10 @@ import { MapComponent } from './components/map/map.component';
     NewsSingleComponent,
     SafeHtmlPipe,
     OnlyNumbersPipe,
-    TruncatePipe
+    TruncatePipe,
+    RequestsBuyComponent,
+    RequestsContactComponent,
+    RequestsBuyEditComponent
   ],
   imports: [
     BrowserModule,
@@ -138,6 +146,8 @@ import { MapComponent } from './components/map/map.component';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatCardModule,
+    MatTabsModule,
+    MatChipsModule,
     MatNativeDateModule,
     MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebase),

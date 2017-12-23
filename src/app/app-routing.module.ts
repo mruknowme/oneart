@@ -15,6 +15,8 @@ import { CreatorsComponent } from './components/admin/creators/creators.componen
 import { SettingsComponent } from './components/admin/settings/settings.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { NewsSingleComponent } from './components/news-single/news-single.component';
+import { RequestsBuyComponent } from './components/admin/requests-buy/requests-buy.component';
+import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
 
 const routes: Routes = [
   {
@@ -86,6 +88,14 @@ const routes: Routes = [
       {
         path: 'creators',
         component: CreatorsComponent
+      },
+      {
+        path: 'buy-requests',
+        component: RequestsBuyComponent
+      },
+      {
+        path: 'contact-requests',
+        component: RequestsContactComponent
       },
       {
         path: 'settings',
