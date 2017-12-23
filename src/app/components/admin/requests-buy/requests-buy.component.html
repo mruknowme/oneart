@@ -17,58 +17,60 @@
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
           </mat-form-field>
         </div>
+        <div class="tab-content">
+
+          <mat-table #table [dataSource]="dataSource" matSort>
         
-        <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- Position Column -->
+            <ng-container matColumnDef="work">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
+              <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
       
-          <!-- Position Column -->
-          <ng-container matColumnDef="work">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
-            <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="phone">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+            </ng-container>
       
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="phone">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-chip-list>
-                <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
-                <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
-                <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
-              </mat-chip-list>
-            </mat-cell>
-          </ng-container>
-    
-          <!-- Color Column -->
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
-            </mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
       
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+            <!-- Name Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
+                  <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
+                  <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <!-- Color Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
       </mat-tab>
 
       <mat-tab label="Выполненные">
@@ -77,58 +79,60 @@
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
           </mat-form-field>
         </div>
+
+        <div class="tab-content">
+          <mat-table #table [dataSource]="dataSource" matSort>
         
-        <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- Position Column -->
+            <ng-container matColumnDef="work">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
+              <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
       
-          <!-- Position Column -->
-          <ng-container matColumnDef="work">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
-            <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="phone">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+            </ng-container>
       
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="phone">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-chip-list>
-                <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
-                <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
-                <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
-              </mat-chip-list>
-            </mat-cell>
-          </ng-container>
-    
-          <!-- Color Column -->
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
-            </mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
       
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+            <!-- Name Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
+                  <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
+                  <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <!-- Color Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
       </mat-tab>
 
       <mat-tab label="Отмененные">
@@ -137,58 +141,59 @@
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
           </mat-form-field>
         </div>
+        <div class="tab-content">
+          <mat-table #table [dataSource]="dataSource" matSort>
         
-        <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- Position Column -->
+            <ng-container matColumnDef="work">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
+              <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
       
-          <!-- Position Column -->
-          <ng-container matColumnDef="work">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Картина </mat-header-cell>
-            <mat-cell *matCellDef="let element" [innerHtml]="matchWork(element.work) | safeHtml"></mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="phone">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+            </ng-container>
       
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="phone">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
-          </ng-container>
-    
-          <!-- Name Column -->
-          <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <mat-chip-list>
-                <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
-                <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
-                <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
-              </mat-chip-list>
-            </mat-cell>
-          </ng-container>
-    
-          <!-- Color Column -->
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-                <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
-            </mat-cell>
-          </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
       
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+            <!-- Name Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Статус </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-chip-list>
+                  <mat-chip *ngIf="element.status === 'open'" color="primary" selected="true">Открытый</mat-chip>
+                  <mat-chip *ngIf="element.status === 'complete'" color="accent" selected="true">Выполненный</mat-chip>
+                  <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
+                </mat-chip-list>
+              </mat-cell>
+            </ng-container>
       
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <!-- Color Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" (click)="edit(element.id)"><mat-icon>edit</mat-icon></button>
+              </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
       </mat-tab>
 
     </mat-tab-group>
