@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
@@ -16,6 +16,8 @@ export interface Site {
   encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent implements OnInit {
+
+  @Output() toggleMapEvent = new EventEmitter();
 
   public siteDocRef: AngularFirestoreDocument<Site>;
   site$: Observable<Site>;
@@ -35,6 +37,13 @@ export class MenuComponent implements OnInit {
     this.site$.subscribe(data => {
       this.site = data;
     });
+  }
+
+  toggleMap(event) {
+    if (event.target === event.currentTarget) {
+      // this.buyFormOpen = !this.buyFormOpen;
+      this.toggleMapEvent.emit(true);
+    }
   }
 
   ngOnInit() {

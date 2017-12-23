@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-admin-layout',
@@ -6,9 +6,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./admin-layout.component.sass'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class AdminLayoutComponent implements OnInit {
 
-  sidenavOpen: Boolean = true;
+  public innerWidth: number;
+  public sidenavOpen: Boolean = true;
 
   constructor() { }
 
@@ -16,6 +18,21 @@ export class AdminLayoutComponent implements OnInit {
     this.sidenavOpen = !this.sidenavOpen;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth < 800) {
+      this.sidenavOpen = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth < 800) {
+      this.sidenavOpen = false;
+    } else {
+      this.sidenavOpen = true;
+    }
+  }
 
 }

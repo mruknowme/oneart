@@ -1,6 +1,6 @@
 <div class="gallery">
 
-  <div *ngFor="let work of works$ | async" class="gallery-item" (tap)="onTap()">
+  <div *ngFor="let work of works$ | async" class="gallery-item">
     <div class="gallery-item-photo" [ngStyle]="{'background-image': 'url(' + work.images[0] + ')'}">
       
     </div>

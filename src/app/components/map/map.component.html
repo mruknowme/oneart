@@ -1,0 +1,17 @@
+<div class="overlay-map" (click)="toggleMap($event)">
+  <div class="map">
+    <agm-map [latitude]="map.currentLocation.lat" [longitude]="map.currentLocation.lng" [zoom]="map.currentLocation.zoom">
+    
+      <agm-marker [latitude]="map.currentLocation.lat" [longitude]="map.currentLocation.lng">
+    
+        <agm-snazzy-info-window [maxWidth]="300">
+          <ng-template>
+            Works
+         </ng-template>
+        </agm-snazzy-info-window>
+        
+      </agm-marker>
+    
+    </agm-map>
+  </div>
+</div>

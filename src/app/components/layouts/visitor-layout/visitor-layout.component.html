@@ -1,8 +1,9 @@
 <div class="wrapper">
   <div class="menu">
-    <app-menu></app-menu>
+    <app-menu (toggleMapEvent)="toggleMap($event)"></app-menu>
   </div>
   <div class="content" [@routerTransition]="getPage(o)">
     <router-outlet #o="outlet"></router-outlet>
+    <app-map *ngIf="mapOpen"(toggleMapEvent)="toggleMap($event)" ></app-map>
   </div>
 </div>

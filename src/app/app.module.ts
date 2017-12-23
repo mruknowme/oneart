@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { DragScrollModule } from 'ngx-drag-scroll';
@@ -74,10 +76,12 @@ import { NewsSingleComponent } from './components/news-single/news-single.compon
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { OnlyNumbersPipe } from './pipes/only-numbers.pipe';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MapComponent,
     MenuComponent,
     HomeComponent,
     AboutComponent,
@@ -137,6 +141,10 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     MatNativeDateModule,
     MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDXr82UNERzK_7UfHtanYOsu0puaLgXvU8'
+    }),
+    AgmSnazzyInfoWindowModule,
     AngularFirestoreModule.enablePersistence(),
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()

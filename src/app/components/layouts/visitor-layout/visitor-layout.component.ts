@@ -9,6 +9,12 @@ import { routerTransition } from './../../../animations/index';
 })
 export class VisitorLayoutComponent {
 
+  public mapOpen = false;
+
+  toggleMap(event) {
+    this.mapOpen = !this.mapOpen;
+  }
+
   getPage(outlet) {
     return outlet.activatedRouteData['page'] || '';
   }
