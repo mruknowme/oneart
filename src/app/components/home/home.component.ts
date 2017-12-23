@@ -34,6 +34,10 @@ export class HomeComponent implements OnInit {
     this.works$ = this.worksRef.valueChanges();
   }
 
+  onTap() {
+    alert('works');
+  }
+
   ngOnInit() {
   }
 

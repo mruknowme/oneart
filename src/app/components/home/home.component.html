@@ -1,12 +1,12 @@
 <div class="gallery">
 
-  <div *ngFor="let work of works$ | async" class="gallery-item">
+  <div *ngFor="let work of works$ | async" class="gallery-item" (tap)="onTap()">
     <div class="gallery-item-photo" [ngStyle]="{'background-image': 'url(' + work.images[0] + ')'}">
       
     </div>
     <div class="gallery-item-body">
       <div routerLink="/works/{{ work.link }}" class="gallery-item-button">Подробнее</div>
-      <div routerLink="/buy/{{ work.link }}" class="gallery-item-button">Купить</div>
+      <div routerLink="/works/{{ work.link }}" class="gallery-item-button">Купить</div>
     </div>
     <div class="gallery-item-footer">
       <h3>{{ work.title }}</h3>

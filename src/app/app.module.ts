@@ -73,6 +73,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
 import { NewsSingleComponent } from './components/news-single/news-single.component';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { OnlyNumbersPipe } from './pipes/only-numbers.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { OnlyNumbersPipe } from './pipes/only-numbers.pipe';
     NewsEditComponent,
     NewsSingleComponent,
     SafeHtmlPipe,
-    OnlyNumbersPipe
+    OnlyNumbersPipe,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

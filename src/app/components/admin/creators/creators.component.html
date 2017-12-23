@@ -33,7 +33,7 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="about">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Биография </mat-header-cell>
-        <mat-cell *matCellDef="let element" [innerHTML]="element.about | safeHtml"></mat-cell>
+        <mat-cell class="limitCharsMobile" *matCellDef="let element" [innerHTML]="element.about | truncate:50 | safeHtml">...</mat-cell>
       </ng-container>
 
       <!-- Color Column -->
