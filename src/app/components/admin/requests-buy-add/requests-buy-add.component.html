@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>Добавить заказ</h2>
+<form [formGroup]="requestsBuyAddForm">
+<mat-dialog-content class="requests-buy-add-dialog">
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Картина" formControlName="work" (change)="changeWork()">
+        <mat-option *ngFor="let work of works$ | async" value="{{ work.title }}">
+          <div style="display: flex; align-items: center;">
+            <img height="40" src="{{ work.images[0] }}" alt="">&nbsp;
+            <span>{{ work.title }}</span>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="hidden" formControlName="work_link" [(ngModel)]="work.link">
+    <div *ngIf="requestsBuyAddForm.controls.work.invalid && (requestsBuyAddForm.controls.work.touched || requestsBuyAddForm.controls.work.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.work.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Имя" formControlName="name">
+    </mat-form-field>
+    <div *ngIf="requestsBuyAddForm.controls.name.invalid && (requestsBuyAddForm.controls.name.touched || requestsBuyAddForm.controls.name.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.name.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.name.errors.minlength">Это поле должно содержать не менее 2-х символов</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.name.errors.maxlength">Это поле должно содержать не более 50-ти символов</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Телефон" type="tel" formControlName="phone">
+    </mat-form-field>
+    <div *ngIf="requestsBuyAddForm.controls.phone.invalid && (requestsBuyAddForm.controls.phone.touched || requestsBuyAddForm.controls.phone.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.phone.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.phone.errors.minlength">Это поле должно содержать не менее 7-ми символов</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.phone.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.phone.errors.pattern">Указан некорректный номер телефона</mat-error>
+    </div>
+  </div>
+
+  <div class="half">
+    <mat-form-field>
+      <input matInput placeholder="Email" type="email" formControlName="email">
+    </mat-form-field>
+    <div *ngIf="requestsBuyAddForm.controls.email.invalid && (requestsBuyAddForm.controls.email.touched || requestsBuyAddForm.controls.email.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.email.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.email.errors.pattern">Указан некорректный email</mat-error>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <textarea matInput [froalaEditor] placeholder="Сообщение" formControlName="message"></textarea>
+    </mat-form-field>
+    <div *ngIf="requestsBuyAddForm.controls.message.invalid && (requestsBuyAddForm.controls.message.touched || requestsBuyAddForm.controls.message.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.message.errors.required">Это поле обязательное</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.message.errors.minlength">Это поле должно содержать не менее 50-ти символов</mat-error>
+      <mat-error *ngIf="requestsBuyAddForm.controls.message.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Статус" formControlName="status" (change)="changeStatus()">
+        <mat-option value="open">Открытый</mat-option>
+        <mat-option value="complete">Выполненный</mat-option>
+        <mat-option value="canceled">Отмененный</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <input type="hidden" formControlName="status_alias" [(ngModel)]="status">
+    <div *ngIf="requestsBuyAddForm.controls.status.invalid && (requestsBuyAddForm.controls.status.touched || requestsBuyAddForm.controls.status.dirty)">
+      <mat-error *ngIf="requestsBuyAddForm.controls.status.errors.required">Это поле обязательное</mat-error>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="requests-buy-add-dialog-actions">
+  <button mat-button mat-dialog-close>Отменить</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="requestsBuyAddForm.invalid" (click)="onSubmit($event.target, 'Добавляю...')">Добавить заказ</button>
+</mat-dialog-actions>
+</form>

@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { RequestsBuyAddComponent } from '../requests-buy-add/requests-buy-add.component';
 
 export interface BuyRequests extends Work {
   email: string;
@@ -80,17 +81,17 @@ export class RequestsBuyComponent implements AfterViewInit {
     }
   }
 
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(GenresAddComponent, {
-  //     width: 'auto',
-  //     height: 'auto',
-  //     minWidth: '50%'
-  //   });
+  openDialog() {
+    const dialogRef = this.dialog.open(RequestsBuyAddComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%'
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     result === true ? console.log('saved') : console.log('closed, not saved');
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();

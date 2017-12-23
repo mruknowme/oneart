@@ -82,6 +82,7 @@ import { MapComponent } from './components/map/map.component';
 import { RequestsBuyComponent } from './components/admin/requests-buy/requests-buy.component';
 import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
 import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/requests-buy-edit.component';
+import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/requests-buy-add.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/r
     TruncatePipe,
     RequestsBuyComponent,
     RequestsContactComponent,
-    RequestsBuyEditComponent
+    RequestsBuyEditComponent,
+    RequestsBuyAddComponent
   ],
   imports: [
     BrowserModule,
@@ -163,7 +165,8 @@ import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/r
     NewsAddComponent, NewsEditComponent, NewsDeleteComponent,
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
-    GenresAddComponent, GenresEditComponent, GenresDeleteComponent
+    GenresAddComponent, GenresEditComponent, GenresDeleteComponent,
+    RequestsBuyAddComponent
   ],
   providers: [ DataService, { provide: DateAdapter, useClass: AppDateAdapter }, { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS } ],
   bootstrap: [AppComponent]
