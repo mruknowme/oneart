@@ -94,7 +94,7 @@ export class RequestsBuyAddComponent implements OnInit {
       button.textContent = text;
       button.disabled = true;
       const newRequestBuy: BuyRequests = {
-        email: Date(),
+        email: this.requestsBuyAddForm.controls.email.value.trim(),
         message: this.requestsBuyAddForm.controls.message.value,
         name: this.requestsBuyAddForm.controls.name.value.trim(),
         phone: this.requestsBuyAddForm.controls.phone.value.trim(),

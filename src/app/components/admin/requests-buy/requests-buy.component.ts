@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/m
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { RequestsBuyAddComponent } from '../requests-buy-add/requests-buy-add.component';
+import { RequestsBuyEditComponent } from '../requests-buy-edit/requests-buy-edit.component';
 
 export interface BuyRequests extends Work {
   email: string;
@@ -106,16 +107,16 @@ export class RequestsBuyComponent implements AfterViewInit {
 
   edit(id) {
     console.log(id);
-    // const dialogRef = this.dialog.open(GenresEditComponent, {
-    //   width: 'auto',
-    //   height: 'auto',
-    //   minWidth: '50%',
-    //   data: { id: id }
-    // });
+    const dialogRef = this.dialog.open(RequestsBuyEditComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { id: id }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   result === true ? console.log('saved') : console.log('closed, not saved');
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
   }
 
   onTabChanged(event) {

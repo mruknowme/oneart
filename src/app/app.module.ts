@@ -166,7 +166,7 @@ import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/req
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
     GenresAddComponent, GenresEditComponent, GenresDeleteComponent,
-    RequestsBuyAddComponent
+    RequestsBuyAddComponent, RequestsBuyEditComponent
   ],
   providers: [ DataService, { provide: DateAdapter, useClass: AppDateAdapter }, { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS } ],
   bootstrap: [AppComponent]
