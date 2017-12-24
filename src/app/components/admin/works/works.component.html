@@ -20,7 +20,10 @@
       <!-- Position Column -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Название </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          <h4 class="works-title">{{element.title}}</h4>
+          <img class="works-image" [src]="element.images[0]" alt="">
+        </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
