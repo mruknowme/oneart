@@ -1,3 +1,62 @@
-<p>
-  requests-contact works!
-</p>
+<div class="admin-requests-contact">
+  <div class="admin-header">
+    <div class="admin-title">
+      <h2>Контакты</h2>
+      <small>Управление всеми запросами</small>
+    </div>
+  </div>
+  <div class="admin-table-container">
+    <div class="table-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Поиск">
+      </mat-form-field>
+    </div>
+  
+    <mat-table #table [dataSource]="dataSource" matSort>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Имя </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Телефон </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="message">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Сообщение </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.message | truncate:50}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата отправки </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.created_at | date:'longDate':'':'ru'}} </mat-cell>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Опции </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="view(element.id)"><mat-icon>search</mat-icon></button>
+            <button mat-icon-button color="accent" (click)="reply(element.id)"><mat-icon>email</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>      
+</div>

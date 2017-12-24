@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Просмотр сообщения</h2>
+<mat-dialog-content class="requests-contact-edit-dialog">
+    <h4>Отправитель</h4>
+    <p>{{ contactRequest.name }}</p>
+    <h4>Телефон</h4>
+    <p>{{ contactRequest.phone }}</p>
+    <h4>Email</h4>
+    <p>{{ contactRequest.email }}</p>
+    <h4>Сообщение</h4>
+    <div class="message">{{ contactRequest.message }}</div>
+    <p class="created_at">Отправлено: {{ contactRequest.created_at | date:'longDate':'':'ru' }}</p>
+</mat-dialog-content>
+<mat-dialog-actions class="requests-contact-edit-dialog-actions">
+  <button mat-button mat-dialog-close>Закрыть</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="onSubmit($event.target, 'Открываю формку для ответа...')">Ответить</button>
+</mat-dialog-actions>

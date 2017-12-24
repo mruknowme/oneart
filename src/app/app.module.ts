@@ -83,6 +83,7 @@ import { RequestsBuyComponent } from './components/admin/requests-buy/requests-b
 import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
 import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/requests-buy-edit.component';
 import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/requests-buy-add.component';
+import { RequestsContactViewComponent } from './components/admin/requests-contact-view/requests-contact-view.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/req
     RequestsBuyComponent,
     RequestsContactComponent,
     RequestsBuyEditComponent,
-    RequestsBuyAddComponent
+    RequestsBuyAddComponent,
+    RequestsContactViewComponent
   ],
   imports: [
     BrowserModule,
@@ -166,7 +168,8 @@ import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/req
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
     GenresAddComponent, GenresEditComponent, GenresDeleteComponent,
-    RequestsBuyAddComponent, RequestsBuyEditComponent
+    RequestsBuyAddComponent, RequestsBuyEditComponent,
+    RequestsContactViewComponent
   ],
   providers: [ DataService, { provide: DateAdapter, useClass: AppDateAdapter }, { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS } ],
   bootstrap: [AppComponent]
