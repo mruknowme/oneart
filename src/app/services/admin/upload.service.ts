@@ -24,10 +24,10 @@ export class UploadService {
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) =>  {
         // upload in progress
-        upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
+        console.log((uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100);
       },
-      (error) => {
+      (error: firebase.FirebaseError) => {
         // upload failed
         console.log(error);
         if (error.code === 'storage/unauthorized') {
