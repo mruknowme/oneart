@@ -14,7 +14,7 @@
         <mat-icon>devices</mat-icon>
         <span>На сайт</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="authService.logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Выйти</span>
       </button>

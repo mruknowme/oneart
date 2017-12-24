@@ -19,9 +19,17 @@
     .table-header
         padding: 0.5rem
 
-@media only screen and (max-width: 800px) 
+@media only screen and (max-width: 800px)
+    small
+        display: block
     .admin-table-container
         max-width: 100%
         overflow: auto
         mat-table
-            width: 150%
+            width: 200%
+
+@media only screen and (max-width: 500px)
+    .admin-news
+        width: 95vw
+        max-width: 95vw
+        padding: 1rem
