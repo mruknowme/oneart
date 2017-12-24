@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { environment } from '../environments/environment';
@@ -72,6 +73,7 @@ import { NewsDeleteComponent } from './components/admin/news-delete/news-delete.
 import { NewsEditComponent } from './components/admin/news-edit/news-edit.component';
 
 import { DataService } from './services/admin/data.service';
+import { AuthService } from './services/auth.service';
 
 import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
 import { NewsSingleComponent } from './components/news-single/news-single.component';
@@ -84,6 +86,7 @@ import { RequestsContactComponent } from './components/admin/requests-contact/re
 import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/requests-buy-edit.component';
 import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/requests-buy-add.component';
 import { RequestsContactViewComponent } from './components/admin/requests-contact-view/requests-contact-view.component';
+import { SignInComponent } from './components/admin/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -126,12 +129,14 @@ import { RequestsContactViewComponent } from './components/admin/requests-contac
     RequestsContactComponent,
     RequestsBuyEditComponent,
     RequestsBuyAddComponent,
-    RequestsContactViewComponent
+    RequestsContactViewComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     DragScrollModule,
     MatButtonModule,
@@ -160,6 +165,7 @@ import { RequestsContactViewComponent } from './components/admin/requests-contac
     }),
     AgmSnazzyInfoWindowModule,
     AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
   ],
@@ -171,7 +177,12 @@ import { RequestsContactViewComponent } from './components/admin/requests-contac
     RequestsBuyAddComponent, RequestsBuyEditComponent,
     RequestsContactViewComponent
   ],
-  providers: [ DataService, { provide: DateAdapter, useClass: AppDateAdapter }, { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS } ],
+  providers: [
+    DataService,
+    AuthService,
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

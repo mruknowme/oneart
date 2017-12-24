@@ -1,0 +1,31 @@
+<div class="admin-signIn-wrapper">
+  <form [formGroup]="signInForm" class="admin-signIn-form">
+    <h1>OneArt</h1>
+    <small>Авторизация</small>
+    <div *ngIf="!(authService.user | async)">
+      <mat-form-field>
+        <input matInput placeholder="Email" type="email" formControlName="email" [(ngModel)]="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Пароль" type="password" formControlName="password" [(ngModel)]="password">
+      </mat-form-field>
+
+      <mat-error *ngIf="signInStatus && signInStatus.code == 'auth/invalid-email'">Указан некорректный email</mat-error>
+      <mat-error *ngIf="signInStatus && signInStatus.code == 'auth/user-not-found'">Пользователь не найден</mat-error>
+      <mat-error *ngIf="signInStatus && signInStatus.code == 'auth/wrong-password'">Неверный пароль</mat-error>
+      
+      <button mat-raised-button color="primary" (click)="login()" [disabled]="processing || !email || !password">
+        Войти
+      </button>
+    </div>
+    <div *ngIf="(authService.user | async)">
+      <p class="authorized">Вы авторизованы!</p>
+      <button mat-raised-button color="accent" routerLink="/admin/dashboard">
+        В админ-панель
+      </button>
+      <button mat-raised-button color="warn" (click)="logout()">
+        Выйти
+      </button>
+    </div>
+  </form>
+</div>

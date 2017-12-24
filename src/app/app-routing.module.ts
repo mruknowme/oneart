@@ -17,6 +17,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NewsSingleComponent } from './components/news-single/news-single.component';
 import { RequestsBuyComponent } from './components/admin/requests-buy/requests-buy.component';
 import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
+import { SignInComponent } from './components/admin/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,11 @@ const routes: Routes = [
         data: { page: 'work' }
       }
     ]
+  },
+  {
+    path: 'admin/sign-in',
+    component: SignInComponent,
+    data: { page: 'signIn' }
   },
   {
     path: 'admin',
