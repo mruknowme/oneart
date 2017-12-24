@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 export interface ContactRequest {
   created_at: Date;
   email: string;
-  messgae: string;
+  message: string;
   name: string;
   phone: string;
 }
@@ -25,7 +25,7 @@ export class RequestsContactViewComponent implements OnInit {
   contactRequest: ContactRequest = {
     created_at: new Date,
     email: '',
-    messgae: '',
+    message: '',
     name: '',
     phone: ''
   };

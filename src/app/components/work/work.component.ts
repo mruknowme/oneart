@@ -24,6 +24,8 @@ export interface BuyForm {
   phone: string;
   email: string;
   message: string;
+  status: string;
+  work: string;
 }
 
 @Component({
@@ -86,13 +88,17 @@ export class WorkComponent implements OnInit {
         name: this.buyForm.controls.name.value.trim(),
         phone: this.buyForm.controls.phone.value.trim(),
         email: this.buyForm.controls.email.value.trim(),
-        message: this.buyForm.controls.message.value
+        message: this.buyForm.controls.message.value,
+        status: 'open',
+        work: this.activatedRoute.snapshot.params.alias
       };
       this.buyFormColRef.add({
         name: newBuyRequest.name,
         phone: newBuyRequest.phone,
         email: newBuyRequest.email,
-        message: newBuyRequest.message
+        message: newBuyRequest.message,
+        status: newBuyRequest.status,
+        work: newBuyRequest.work
       });
       this.buyFormSubmitted = true;
     } else {
