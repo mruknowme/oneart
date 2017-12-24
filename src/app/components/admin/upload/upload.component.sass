@@ -1,0 +1,45 @@
+.admin-upload-wrapper
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  margin: 2rem
+  input[type=file]
+    width: 0.1px
+    height: 0.1px
+    opacity: 0
+    overflow: hidden
+    position: absolute
+    z-index: -1
+  input[type=file] + label
+    padding: 1rem
+    font-size: 1.25em
+    font-weight: 500
+    color: white
+    background-color: rgba(#673ab7, 0.9)
+    display: inline-block
+    cursor: pointer
+  input[type=file]:focus + label,
+  input[type=file] + label:hover
+    background-color: #673ab7
+  input[type=file]:focus + label *
+    pointer-events: none
+  button
+    margin: 1rem 0
+  mat-error
+    margin: 0.5rem 0
+.admin-upload-progress
+  margin: 1.5rem 0
+  p
+    margin: 0.5rem 0 1rem 0
+    color: #333333
+    font-weight: 300
+  .delete-instructions
+    font-weight: 100
+    font-style: italic
+.admin-upload-uploadedFiles
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  grid-gap: 0.5rem 0.5rem
+  img
+    height: 80px

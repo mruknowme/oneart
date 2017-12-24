@@ -1,0 +1,14 @@
+<div class="admin-upload-wrapper">
+  <div *ngIf="currentUpload" class="admin-upload-progress">
+    <mat-progress-bar mode="determinate" [value]="currentUpload?.progress"></mat-progress-bar>
+    <p>Прогресс: {{ currentUpload?.name }} | {{ currentUpload?.progress | number:'1.2-2' }}% завершено</p>
+    <div *ngIf="uploadedFiles && uploadedFiles?.length > 0" class="admin-upload-uploadedFiles">
+      <img *ngFor="let file of uploadedFiles" [src]="file.url" [alt]="file.name" (dblclick)="deleteFile(file.name)">
+    </div>
+    <p *ngIf="uploadedFiles && uploadedFiles?.length > 0" class="delete-instructions">Щелкните дважды по картинке чтобы удалить файл</p>
+  </div>
+  <input type="file" id="file" (change)="detectFiles($event)" multiple>
+  <label for="file" (click)="enableUploadBtn()">Выбрать файлы</label>
+  <mat-error *ngIf="errorMess">Произошла ошибка при загрузке! Убедитесь что загружаемый файл является изображением и не превышает 10мб.</mat-error>
+  <button mat-raised-button color="accent" [disabled]="!selectedFiles || uploadBtnDisabled" (click)="uploadMulti()">Загрузить файлы</button>
+</div>

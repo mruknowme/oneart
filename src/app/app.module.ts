@@ -43,6 +43,7 @@ import { MatButtonModule,
   MatCardModule,
   MatTabsModule,
   MatChipsModule,
+  MatProgressBarModule,
   MatNativeDateModule,
   MatDatepickerModule,
   DateAdapter,
@@ -76,6 +77,7 @@ import { NewsDeleteComponent } from './components/admin/news-delete/news-delete.
 import { NewsEditComponent } from './components/admin/news-edit/news-edit.component';
 
 import { DataService } from './services/admin/data.service';
+import { UploadService } from './services/admin/upload.service';
 import { AuthService } from './services/auth.service';
 
 import { AppDateAdapter, APP_DATE_FORMATS } from './adapters/date.adapter';
@@ -90,6 +92,8 @@ import { RequestsBuyEditComponent } from './components/admin/requests-buy-edit/r
 import { RequestsBuyAddComponent } from './components/admin/requests-buy-add/requests-buy-add.component';
 import { RequestsContactViewComponent } from './components/admin/requests-contact-view/requests-contact-view.component';
 import { SignInComponent } from './components/admin/sign-in/sign-in.component';
+import { FileDropDirective } from './directives/file-drop.directive';
+import { UploadComponent } from './components/admin/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -133,7 +137,9 @@ import { SignInComponent } from './components/admin/sign-in/sign-in.component';
     RequestsBuyEditComponent,
     RequestsBuyAddComponent,
     RequestsContactViewComponent,
-    SignInComponent
+    SignInComponent,
+    FileDropDirective,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -160,6 +166,7 @@ import { SignInComponent } from './components/admin/sign-in/sign-in.component';
     MatCardModule,
     MatTabsModule,
     MatChipsModule,
+    MatProgressBarModule,
     MatNativeDateModule,
     MatDatepickerModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -182,7 +189,9 @@ import { SignInComponent } from './components/admin/sign-in/sign-in.component';
   ],
   providers: [
     DataService,
+    UploadService,
     AuthService,
+    FileDropDirective,
     AuthGuard,
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }

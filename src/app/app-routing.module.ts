@@ -19,6 +19,7 @@ import { NewsSingleComponent } from './components/news-single/news-single.compon
 import { RequestsBuyComponent } from './components/admin/requests-buy/requests-buy.component';
 import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
 import { SignInComponent } from './components/admin/sign-in/sign-in.component';
+import { UploadComponent } from './components/admin/upload/upload.component';
 
 const routes: Routes = [
   {
@@ -115,6 +116,11 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'upload',
+        component: UploadComponent,
         canActivate: [AuthGuard]
       }
     ]
