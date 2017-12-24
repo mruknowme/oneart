@@ -51,6 +51,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { AuthGuard } from './guards/auth.guard';
+
 import { ToolbarComponent } from './components/admin/toolbar/toolbar.component';
 import { SidenavComponent } from './components/admin/sidenav/sidenav.component';
 import { WorksComponent } from './components/admin/works/works.component';
@@ -180,6 +182,7 @@ import { SignInComponent } from './components/admin/sign-in/sign-in.component';
   providers: [
     DataService,
     AuthService,
+    AuthGuard,
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ],

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { GenresUserComponent } from './components/genres/genres.component';
 import { NewsUserComponent } from './components/news/news.component';
@@ -77,35 +78,43 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'news',
-        component: NewsComponent
+        component: NewsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'works',
-        component: WorksComponent
+        component: WorksComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'genres',
-        component: GenresComponent
+        component: GenresComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'creators',
-        component: CreatorsComponent
+        component: CreatorsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'buy-requests',
-        component: RequestsBuyComponent
+        component: RequestsBuyComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'contact-requests',
-        component: RequestsContactComponent
+        component: RequestsContactComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
-        component: SettingsComponent
+        component: SettingsComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
