@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   onTap() {
-    alert('works');
+    console.log('tapped');
   }
 
   ngOnInit() {
