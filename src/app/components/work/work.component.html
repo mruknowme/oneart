@@ -33,6 +33,10 @@
         <p *ngIf="buyForm.controls.message.errors.minlength">Это поле должно содержать не менее 5-ти символов</p>
         <p *ngIf="buyForm.controls.message.errors.maxlength">Это поле должно содержать не более 5 000 символов</p>
       </div>
+      <re-captcha style="margin: 0 auto;" formControlName="recaptcha"></re-captcha>
+      <div *ngIf="buyForm.controls.recaptcha.invalid && (buyForm.controls.recaptcha.touched || buyForm.controls.recaptcha.dirty)">
+        <mat-error *ngIf="buyForm.controls.recaptcha.errors.required">Каптча должна быть заполнена</mat-error>
+      </div>
       <button type="submit" [disabled]="buyForm.invalid" (click)="onBuySubmit()">Отправить заявку</button>
     </form>
   </div>

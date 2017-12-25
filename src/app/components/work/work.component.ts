@@ -72,6 +72,7 @@ export class WorkComponent implements OnInit {
       email: [ '', [Validators.required, Validators.pattern(this.emailRegex)] ],
       phone: [ '', [Validators.required, Validators.minLength(6), Validators.maxLength(20),  Validators.pattern('^[+0-9-\(\) ]*$')] ],
       message: [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(5000)] ],
+      recaptcha: [ null, [Validators.required] ]
     });
   }
 
