@@ -12,6 +12,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { ClipboardModule } from 'ngx-clipboard';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { environment } from '../environments/environment';
 
 import { registerLocaleData } from '@angular/common';
@@ -151,6 +153,8 @@ import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.serv
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ClipboardModule,
+    LazyLoadImageModule,
     DragScrollModule,
     MatButtonModule,
     MatToolbarModule,

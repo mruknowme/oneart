@@ -12,3 +12,13 @@
   <mat-error *ngIf="errorMess">Произошла ошибка при загрузке! Убедитесь что загружаемый файл является изображением и не превышает 10мб.</mat-error>
   <button mat-raised-button color="accent" [disabled]="!selectedFiles || uploadBtnDisabled" (click)="uploadMulti()">Загрузить файлы</button>
 </div>
+<div class="admin-upload-grid">
+  <div *ngFor="let upload of uploads" class="admin-upload-grid-item">
+    <img defaultImage="https://firebasestorage.googleapis.com/v0/b/oneart-28ed5.appspot.com/o/uploads%2Floading-file.png?alt=media&token=0934fb8b-12c8-40b9-adde-65044464addb" offset="100" [lazyLoad]="upload.url" [alt]="upload.name">
+    <h3>{{ upload.name }}</h3>
+    <div class="admin-upload-grid-item-btns">
+      <button mat-raised-button color="accent" ngxClipboard  [cbContent]="upload.url" (click)="copyToClipboard()">Копировать ссылку</button>
+      <button mat-raised-button color="warn" (click)="deleteFile(upload.name)">Удалить</button>
+    </div>
+  </div>
+</div>
