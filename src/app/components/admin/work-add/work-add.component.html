@@ -42,6 +42,21 @@
     <mat-error *ngIf="worksAddForm.controls.description.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
   </div>
 
+  <div class="btn-choose-photo">
+    <p class="thumbnail-info">Перыое выбранное фото будет обложкой</p>
+    <button mat-raised-button (click)="choosePhoto()" color="primary">Выбрать фото</button>
+  </div>
+
+  <!-- <div>
+    <mat-form-field>
+      <input matInput type="url" placeholder="Сылка на фото (https://)" (change)="checkImgUrl($event.target.value)">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+  </div> -->
+
   <div class="half">
     <mat-form-field>
       <input matInput placeholder="Цена" type="number" formControlName="price">

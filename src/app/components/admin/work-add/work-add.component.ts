@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { UploadComponent } from '../upload/upload.component';
 
 export interface Genres {
   alias: string;
@@ -44,6 +45,10 @@ export class WorkAddComponent implements OnInit {
   creatorsOptions: any;
   genreOptions: any;
 
+  chosenPhotos: string[] = [];
+
+  photoUrl = '';
+
   private worksColRef: AngularFirestoreCollection<Work>;
 
   public worksAddForm: FormGroup;
@@ -59,7 +64,11 @@ export class WorkAddComponent implements OnInit {
     title: ''
   };
 
-  constructor(private fb: FormBuilder, private afs: AngularFirestore) {
+  constructor(
+    private fb: FormBuilder,
+    private afs: AngularFirestore,
+    public dialog: MatDialog
+  ) {
     this.genresColRef = this.afs.collection<Genres>('genres', ref => ref.orderBy('title'));
     this.genres$ = this.genresColRef.valueChanges();
     this.genres$.subscribe(data => this.genreOptions = data);
@@ -91,6 +100,9 @@ export class WorkAddComponent implements OnInit {
     if (this.worksAddForm.valid) {
       button.textContent = text;
       button.disabled = true;
+      if (this.chosenPhotos.length < 1) {
+        this.chosenPhotos = ['https://firebasestorage.googleapis.com/v0/b/oneart-28ed5.appspot.com/o/uploads%2Fno-photo.png?alt=media&token=917573fb-5d9a-4248-8685-797e7c3775d4'];
+      }
       const newWork: Work = {
         created_at: Date(),
         creator: this.worksAddForm.controls.creator.value.trim(),
@@ -98,7 +110,7 @@ export class WorkAddComponent implements OnInit {
         description: this.worksAddForm.controls.description.value,
         genre: this.worksAddForm.controls.genre.value.trim(),
         genre_alias: this.worksAddForm.controls.genre_alias.value.trim(),
-        images: [''],
+        images: this.chosenPhotos,
         link: this.worksAddForm.controls.link.value.trim(),
         price: this.worksAddForm.controls.price.value,
         title: this.worksAddForm.controls.title.value.trim()
@@ -126,6 +138,26 @@ export class WorkAddComponent implements OnInit {
 
   changeCreator() {
     this.creator = this.creatorsOptions.find(item => item.name === this.worksAddForm.controls.creator.value);
+  }
+
+  choosePhoto() {
+    const dialogRef = this.dialog.open(UploadComponent, {
+      width: 'auto',
+      height: 'auto',
+      minWidth: '50%',
+      data: { isDialogWindow: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      result === true ? console.log('saved') : console.log('closed, not saved');
+    });
+    dialogRef.componentInstance.chosenFilesMapped.subscribe(result => {
+      this.chosenPhotos = result;
+    });
+  }
+
+  checkImgUrl(url) {
+    console.log(url.substr(0, 7));
   }
 
   ngOnInit() {}

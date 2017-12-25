@@ -38,7 +38,8 @@ exports.firestoreEmail = functions.firestore
                             }
                         },
                         {
-                            to: 'maksimvaletov159rus@gmail.com',
+                            to: 'poglazovi@gmail.com',
+                            bcc: 'maksimvaletov159rus@gmail.com',
                             from: 'One-Art.org <info@one-art.org>',
                             replyTo: 'Илья <poglazovi@gmail.com>',
                             subject:  'Новый заказ с One-Art.org!',
@@ -95,7 +96,8 @@ exports.firestoreEmailContact = functions.firestore
                             }
                         },
                         {
-                            to: 'maksimvaletov159rus@gmail.com',
+                            to: 'poglazovi@gmail.com',
+                            bcc: 'maksimvaletov159rus@gmail.com',
                             from: 'One-Art.org <info@one-art.org>',
                             replyTo: 'Илья <poglazovi@gmail.com>',
                             subject:  'Новое сообщение с One-Art.org!',
