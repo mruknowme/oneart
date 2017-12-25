@@ -16,7 +16,7 @@
   </ul>
 </nav>
 <div class="menu-contact">
-  <div class="menu-contact-item menu-contact-address">
+  <div *ngIf="displayAddress" class="menu-contact-item menu-contact-address">
     <a (click)="toggleMap($event)"><i class="fa fa-map-marker"></i> Адрес на карте</a>
   </div>
   <address class="menu-contact-item menu-contact-phone">

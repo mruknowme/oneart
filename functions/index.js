@@ -96,7 +96,7 @@ exports.firestoreEmailContact = functions.firestore
                             }
                         },
                         {
-                            to: 'poglazovi@gmail.com',
+                            to: user.email_admin,
                             bcc: 'maksimvaletov159rus@gmail.com',
                             from: 'One-Art.org <info@one-art.org>',
                             replyTo: 'Илья <poglazovi@gmail.com>',

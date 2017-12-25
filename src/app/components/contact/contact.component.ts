@@ -9,6 +9,7 @@ export interface ContactForm {
   email: string;
   message: string;
   created_at: string;
+  email_admin: string;
 }
 
 export interface Site {
@@ -79,7 +80,8 @@ export class ContactComponent implements OnInit {
         name: newRequest.name,
         phone: newRequest.phone,
         email: newRequest.email,
-        message: newRequest.message
+        message: newRequest.message,
+        email_admin: this.site.email_general
       });
     } else {
       alert('Возникла ошибка! Перезагрузите страницу и попробуйте заново.');
