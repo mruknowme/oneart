@@ -18,8 +18,12 @@
     <img defaultImage="https://firebasestorage.googleapis.com/v0/b/oneart-28ed5.appspot.com/o/uploads%2Floading-file.png?alt=media&token=0934fb8b-12c8-40b9-adde-65044464addb" offset="100" [lazyLoad]="upload.url" [alt]="upload.name">
     <h3>{{ upload.name }}</h3>
     <div class="admin-upload-grid-item-btns">
-      <button mat-raised-button color="accent" ngxClipboard  [cbContent]="upload.url" (click)="copyToClipboard()">Копировать ссылку</button>
+      <button *ngIf="!isDialogWindow" mat-raised-button color="accent" ngxClipboard  [cbContent]="upload.url" (click)="copyToClipboard()">Копировать ссылку</button>
+      <button *ngIf="isDialogWindow" mat-raised-button [color]="isChosen(upload.name)" (click)="toggleChooseFile(upload.name, upload.url, $event)">Выбрать</button>
       <button mat-raised-button color="warn" (click)="deleteFile(upload.name)">Удалить</button>
     </div>
   </div>
 </div>
+<mat-dialog-actions *ngIf="isDialogWindow" class="admin-upload-dialog-btn-done">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Готово</button>
+</mat-dialog-actions>

@@ -3,7 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { UploadComponent } from '../upload/upload.component';
+import { UploadDialogComponent } from '../upload-dialog/upload-dialog.component';
+import * as randomString from 'random-string';
 
 export interface Genres {
   alias: string;
@@ -70,6 +71,10 @@ export class WorkAddComponent implements OnInit {
     title: ''
   };
 
+  addImgFromUrlBtnEnabled = true;
+
+  imageUrlErrMess = '';
+
   constructor(
     private fb: FormBuilder,
     private afs: AngularFirestore,
@@ -95,6 +100,7 @@ export class WorkAddComponent implements OnInit {
       genre: ['', [Validators.required]],
       genre_alias: ['', [Validators.required]],
       title: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(70)] ],
+      imgUrl: [''],
       description: [ '', [Validators.required, Validators.minLength(50), Validators.maxLength(5000)] ],
       price: [ '', [Validators.required, Validators.min(0)] ],
       link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z\-_]*$')] ]
@@ -147,7 +153,7 @@ export class WorkAddComponent implements OnInit {
   }
 
   choosePhoto() {
-    const dialogRef = this.dialog.open(UploadComponent, {
+    const dialogRef = this.dialog.open(UploadDialogComponent, {
       width: 'auto',
       height: 'auto',
       minWidth: '50%',
@@ -158,12 +164,43 @@ export class WorkAddComponent implements OnInit {
       result === true ? console.log('saved') : console.log('closed, not saved');
     });
     dialogRef.componentInstance.chosenFilesMapped.subscribe(result => {
-      this.chosenPhotos = result;
+      result.forEach(photo => {
+        if (!this.chosenPhotos.includes(photo)) {
+          this.chosenPhotos.push(photo);
+        }
+      });
+      // this.chosenPhotos.push(result);
     });
   }
 
-  checkImgUrl(url) {
-    console.log(url.substr(0, 7));
+  checkImgUrl() {
+    const url = this.worksAddForm.controls.imgUrl.value;
+    const protocol = url.substr(0, 8);
+    if (protocol !== 'https://') {
+      if (protocol !== 'http://') {
+        this.imageUrlErrMess = 'Указана ссылка некорректного формата. Ссылка должна начинаться с https://';
+      }
+      console.log('Not safe!');
+      this.imageUrlErrMess = 'Указанная ссылка на изображение не является безопасной!<br>Чтобы использовать именно эту картинку, вначале сохраните ее себе на компьютер затем загрузите на сервер или найдите другую картинку, ссылка на которую начинается с https://';
+    } else {
+      if (this.chosenPhotos.filter(photo => photo === url).length < 1) {
+        this.imageUrlErrMess = '';
+        // this.addImgFromUrlBtnEnabled = true;
+        this.chosenPhotos.push(url);
+      } else {
+        this.imageUrlErrMess = 'Это изображение уже добавлено';
+      }
+    }
+    this.worksAddForm.controls.imgUrl.reset();
+  }
+
+  removePhoto(url) {
+    this.chosenPhotos = this.chosenPhotos.filter(photo => photo !== url);
+  }
+
+  errorImg(url) {
+    this.chosenPhotos = this.chosenPhotos.filter(photo => photo !== url);
+    this.imageUrlErrMess = 'Ссылка не действительна';
   }
 
   ngOnInit() {}

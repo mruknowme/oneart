@@ -100,6 +100,7 @@ import { FileDropDirective } from './directives/file-drop.directive';
 import { UploadComponent } from './components/admin/upload/upload.component';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha/recaptcha/recaptcha-settings';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.service';
+import { UploadDialogComponent } from './components/admin/upload-dialog/upload-dialog.component';
 
 @NgModule({
   declarations: [
@@ -145,7 +146,8 @@ import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.serv
     RequestsContactViewComponent,
     SignInComponent,
     FileDropDirective,
-    UploadComponent
+    UploadComponent,
+    UploadDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -190,6 +192,7 @@ import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.serv
     RecaptchaFormsModule
   ],
   entryComponents: [
+    UploadDialogComponent,
     NewsAddComponent, NewsEditComponent, NewsDeleteComponent,
     WorkAddComponent, WorksEditComponent, WorksDeleteComponent,
     CreatorsAddComponent, CreatorsEditComponent, CreatorsDeleteComponent,
