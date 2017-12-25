@@ -38,6 +38,10 @@
           <mat-error *ngIf="contactForm.controls.message.errors.minlength">Это поле должно содержать не менее 10-ти символов</mat-error>
           <mat-error *ngIf="contactForm.controls.message.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
         </div>
+        <re-captcha style="margin: 0 auto;" formControlName="recaptcha"></re-captcha>
+        <div *ngIf="contactForm.controls.recaptcha.invalid && (contactForm.controls.recaptcha.touched || contactForm.controls.recaptcha.dirty)">
+          <mat-error *ngIf="contactForm.controls.recaptcha.errors.required">Каптча должна быть заполнена</mat-error>
+        </div>
         <button type="submit" [disabled]="contactForm.invalid" (click)="onSubmit($event.target, 'Отправляю...')">Отправить</button>
       </form>
       <ng-template #thankyouMessage>

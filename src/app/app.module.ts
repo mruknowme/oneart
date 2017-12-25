@@ -10,6 +10,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { environment } from '../environments/environment';
 
 import { registerLocaleData } from '@angular/common';
@@ -94,6 +96,8 @@ import { RequestsContactViewComponent } from './components/admin/requests-contac
 import { SignInComponent } from './components/admin/sign-in/sign-in.component';
 import { FileDropDirective } from './directives/file-drop.directive';
 import { UploadComponent } from './components/admin/upload/upload.component';
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha/recaptcha/recaptcha-settings';
+import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.service';
 
 @NgModule({
   declarations: [
@@ -177,7 +181,9 @@ import { UploadComponent } from './components/admin/upload/upload.component';
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   entryComponents: [
     NewsAddComponent, NewsEditComponent, NewsDeleteComponent,
@@ -194,7 +200,9 @@ import { UploadComponent } from './components/admin/upload/upload.component';
     FileDropDirective,
     AuthGuard,
     { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+    { provide: RECAPTCHA_SETTINGS, useValue: { siteKey: '6LeKRD4UAAAAAL1KYXlYUKeYh7vLFYECQLChrRbd'} as RecaptchaSettings },
+    { provide: RECAPTCHA_LANGUAGE, useValue: 'ru' }
   ],
   bootstrap: [AppComponent]
 })

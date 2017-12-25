@@ -56,7 +56,8 @@ export class ContactComponent implements OnInit {
       name: [ '', [Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
       phone: [ '', [Validators.required, Validators.pattern('^[\+]?[0-9\-\(\) ]{6,20}$')] ],
       email: [ '', [Validators.required, Validators.email] ],
-      message: [ '', [Validators.required, Validators.minLength(10), Validators.maxLength(5000)] ]
+      message: [ '', [Validators.required, Validators.minLength(10), Validators.maxLength(5000)] ],
+      recaptcha: [null, [Validators.required] ]
     });
   }
 
