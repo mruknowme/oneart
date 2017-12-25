@@ -8,6 +8,7 @@ export interface ContactForm {
   phone: string;
   email: string;
   message: string;
+  created_at: string;
 }
 
 export interface Site {
@@ -67,12 +68,14 @@ export class ContactComponent implements OnInit {
       button.disabled = true;
       this.formSubmitted = true;
       const newRequest: ContactForm = {
+        created_at: Date(),
         name: this.contactForm.controls.name.value.trim(),
         phone: this.contactForm.controls.phone.value.trim(),
         email: this.contactForm.controls.email.value.trim(),
         message: this.contactForm.controls.message.value.trim()
       };
       this.contactRequestsColRef.add({
+        created_at: newRequest.created_at,
         name: newRequest.name,
         phone: newRequest.phone,
         email: newRequest.email,
