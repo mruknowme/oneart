@@ -49,6 +49,12 @@ export class WorkAddComponent implements OnInit {
 
   photoUrl = '';
 
+  froala = {
+    options: {
+      placeholderText: 'Описание'
+    }
+  };
+
   private worksColRef: AngularFirestoreCollection<Work>;
 
   public worksAddForm: FormGroup;

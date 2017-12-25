@@ -36,6 +36,19 @@ export class NewsEditComponent implements OnInit {
     title: ''
   };
 
+  froala = {
+    descBrief: {
+      options: {
+        placeholderText: 'Превью новости'
+      }
+    },
+    descFull: {
+      options: {
+        placeholderText: 'Полный текст новости'
+      }
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore, @Inject(MAT_DIALOG_DATA) public dialogData: any) {
     this.createGenresEditForm();
 

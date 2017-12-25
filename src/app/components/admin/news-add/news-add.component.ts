@@ -26,6 +26,19 @@ export class NewsAddComponent implements OnInit {
 
   public newsAddForm: FormGroup;
 
+  froala = {
+    descBrief: {
+      options: {
+        placeholderText: 'Превью новости'
+      }
+    },
+    desc_full: {
+      options: {
+        placeholderText: 'Полный текст новости'
+      }
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {
     this.createNewsAddForm();
     this.newsColRef = this.afs.collection<News>('news');

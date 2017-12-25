@@ -22,6 +22,12 @@ export class CreatorsEditComponent implements OnInit {
 
   public creatorsEditForm: FormGroup;
 
+  froala = {
+    options: {
+      placeholderText: 'Биография'
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore, @Inject(MAT_DIALOG_DATA) public dialogData: any) {
     this.createCreatorsEditForm();
     this.creatorsDocRef = this.afs.doc<Creators>('creators/' + this.dialogData.id);

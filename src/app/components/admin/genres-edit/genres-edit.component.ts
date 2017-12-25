@@ -28,6 +28,12 @@ export class GenresEditComponent implements OnInit {
     title: ''
   };
 
+  froala = {
+    options: {
+      placeholderText: 'Описание'
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore, @Inject(MAT_DIALOG_DATA) public dialogData: any) {
     this.createGenresEditForm();
 

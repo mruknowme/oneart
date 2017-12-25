@@ -34,7 +34,7 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput [froalaEditor] placeholder="Описание" formControlName="description"></textarea>
+    <textarea matInput [froalaEditor]="froala.options" placeholder="Описание" formControlName="description"></textarea>
   </mat-form-field>
   <div *ngIf="worksAddForm.controls.description.invalid && (worksAddForm.controls.description.touched || worksAddForm.controls.description.dirty)">
     <mat-error *ngIf="worksAddForm.controls.description.errors.required">Это поле обязательное</mat-error>

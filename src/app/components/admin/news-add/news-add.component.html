@@ -11,7 +11,7 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput [froalaEditor] placeholder="Превью" formControlName="desc_brief"></textarea>
+    <textarea matInput [froalaEditor]="froala.descBrief.options" placeholder="Превью" formControlName="desc_brief"></textarea>
   </mat-form-field>
   <div *ngIf="newsAddForm.controls.desc_brief.invalid && (newsAddForm.controls.desc_brief.touched || newsAddForm.controls.desc_brief.dirty)">
     <mat-error *ngIf="newsAddForm.controls.desc_brief.errors.required">Это поле обязательное</mat-error>
@@ -20,7 +20,7 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput [froalaEditor] placeholder="Полный текст новости" formControlName="desc_full"></textarea>
+    <textarea matInput [froalaEditor]="froala.descFull.options" placeholder="Полный текст новости" formControlName="desc_full"></textarea>
   </mat-form-field>
   <div *ngIf="newsAddForm.controls.desc_full.invalid && (newsAddForm.controls.desc_full.touched || newsAddForm.controls.desc_full.dirty)">
     <mat-error *ngIf="newsAddForm.controls.desc_full.errors.required">Это поле обязательное</mat-error>

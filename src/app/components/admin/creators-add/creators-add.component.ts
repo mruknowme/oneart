@@ -23,6 +23,12 @@ export class CreatorsAddComponent implements OnInit {
 
   public creatorsAddForm: FormGroup;
 
+  froala = {
+    options: {
+      placeholderText: 'Биография'
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {
     this.createCreatorsAddForm();
     this.creatorsColRef = this.afs.collection<Creators>('creators');

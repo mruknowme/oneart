@@ -22,6 +22,12 @@ export class GenresAddComponent implements OnInit {
 
   public genresAddForm: FormGroup;
 
+  froala = {
+    options: {
+      placeholderText: 'Описание'
+    }
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {
     this.createGenresAddForm();
     this.genresColRef = this.afs.collection<Genres>('genres');
