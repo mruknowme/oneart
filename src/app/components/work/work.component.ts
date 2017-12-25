@@ -26,6 +26,14 @@ export interface BuyForm {
   message: string;
   status: string;
   work: string;
+  email_admin: string;
+}
+
+export interface Site {
+  address: string;
+  email_general: string;
+  phone_main: string;
+  status?: boolean;
 }
 
 @Component({
@@ -39,6 +47,9 @@ export class WorkComponent implements OnInit {
   workRef: AngularFirestoreCollection<Work>;
   work$: Observable<Work[]>;
 
+  public siteDocRef: AngularFirestoreDocument<Site>;
+  site$: Observable<Site>;
+
   buyFormColRef: AngularFirestoreCollection<BuyForm>;
 
   preview = false;
@@ -51,6 +62,13 @@ export class WorkComponent implements OnInit {
 
   public buyForm: FormGroup;
 
+  public site: Site = {
+    address: '',
+    email_general: '',
+    phone_main: '',
+    status: true
+  };
+
 
   @ViewChild('workImageSlider', {read: DragScroll}) ds: DragScroll;
 
@@ -62,6 +80,12 @@ export class WorkComponent implements OnInit {
     this.work$ = this.workRef.valueChanges();
 
     this.buyFormColRef = this.afs.collection<BuyForm>('buy_requests');
+
+    this.siteDocRef = this.afs.doc<Site>('site/7gvZVdP6STrS7yK0cqeW');
+    this.site$ = this.siteDocRef.valueChanges();
+    this.site$.subscribe(data => {
+      this.site = data;
+    });
 
     this.createBuyForm();
   }
@@ -91,7 +115,8 @@ export class WorkComponent implements OnInit {
         email: this.buyForm.controls.email.value.trim(),
         message: this.buyForm.controls.message.value,
         status: 'open',
-        work: this.activatedRoute.snapshot.params.alias
+        work: this.activatedRoute.snapshot.params.alias,
+        email_admin: this.site.email_general
       };
       this.buyFormColRef.add({
         name: newBuyRequest.name,
@@ -99,7 +124,8 @@ export class WorkComponent implements OnInit {
         email: newBuyRequest.email,
         message: newBuyRequest.message,
         status: newBuyRequest.status,
-        work: newBuyRequest.work
+        work: newBuyRequest.work,
+        email_admin: newBuyRequest.email_admin
       });
       this.buyFormSubmitted = true;
     } else {

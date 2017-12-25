@@ -73,7 +73,8 @@ export class ContactComponent implements OnInit {
         name: this.contactForm.controls.name.value.trim(),
         phone: this.contactForm.controls.phone.value.trim(),
         email: this.contactForm.controls.email.value.trim(),
-        message: this.contactForm.controls.message.value.trim()
+        message: this.contactForm.controls.message.value.trim(),
+        email_admin: this.site.email_general
       };
       this.contactRequestsColRef.add({
         created_at: newRequest.created_at,
@@ -81,7 +82,7 @@ export class ContactComponent implements OnInit {
         phone: newRequest.phone,
         email: newRequest.email,
         message: newRequest.message,
-        email_admin: this.site.email_general
+        email_admin: newRequest.email_admin
       });
     } else {
       alert('Возникла ошибка! Перезагрузите страницу и попробуйте заново.');

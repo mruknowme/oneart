@@ -32,7 +32,7 @@ export class NewsAddComponent implements OnInit {
         placeholderText: 'Превью новости'
       }
     },
-    desc_full: {
+    descFull: {
       options: {
         placeholderText: 'Полный текст новости'
       }
