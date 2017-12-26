@@ -5,9 +5,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable';
 
 export interface News {
-  created_at: any;
-  date_end: any;
-  date_start: any;
+  created_at: string;
   desc_brief: string;
   desc_full: string;
   link: string;
@@ -28,8 +26,6 @@ export class NewsEditComponent implements OnInit {
 
   public news: News = {
     created_at: '',
-    date_end: '',
-    date_start: '',
     desc_brief: '',
     desc_full: '',
     link: '',
@@ -64,9 +60,7 @@ export class NewsEditComponent implements OnInit {
       title: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(50)] ],
       desc_brief: [ '', [Validators.required, Validators.minLength(10), Validators.maxLength(300)] ],
       desc_full: [ '', [Validators.required, Validators.minLength(100), Validators.maxLength(5000)] ],
-      link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z0-9-]*$')] ],
-      date_start: [ '', [Validators.required] ],
-      date_end: [ '', [Validators.required] ]
+      link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z0-9-]*$')] ]
     });
   }
 
@@ -75,13 +69,11 @@ export class NewsEditComponent implements OnInit {
       button.textContent = text;
       button.disabled = true;
       const updatedNews: News = {
-        created_at: new Date(),
+        created_at: Date(),
         title: this.newsEditForm.controls.title.value.trim(),
         desc_brief: this.newsEditForm.controls.desc_brief.value,
         desc_full: this.newsEditForm.controls.desc_full.value,
-        link: this.newsEditForm.controls.link.value.trim(),
-        date_start: this.newsEditForm.controls.date_start.value,
-        date_end: this.newsEditForm.controls.date_end.value
+        link: this.newsEditForm.controls.link.value.trim()
       };
       this.newsDocRef.update(updatedNews);
     } else {

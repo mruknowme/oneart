@@ -37,15 +37,9 @@
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="date_start">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата старта </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.date_start | date:'short':'':'ru'}} </mat-cell>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="date_end">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата окончания </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.date_end | date:'longDate':'':'ru'}} </mat-cell>
+      <ng-container matColumnDef="created_at">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.created_at | date:'short':'':'ru'}} </mat-cell>
       </ng-container>
 
       <!-- Color Column -->

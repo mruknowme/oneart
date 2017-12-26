@@ -6,8 +6,6 @@ import { Observable } from 'rxjs/Observable';
 
 export interface News {
   created_at: string;
-  date_end: string;
-  date_start: string;
   desc_brief: string;
   desc_full: string;
   link: string;
@@ -49,9 +47,7 @@ export class NewsAddComponent implements OnInit {
       title: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(50)] ],
       desc_brief: [ '', [Validators.required, Validators.minLength(10), Validators.maxLength(300)] ],
       desc_full: [ '', [Validators.required, Validators.minLength(100), Validators.maxLength(5000)] ],
-      link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z0-9-]*$')] ],
-      date_start: [ '', [Validators.required] ],
-      date_end: [ '', [Validators.required] ]
+      link: [ '', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern('^[a-z0-9-]*$')] ]
     });
   }
 
@@ -64,8 +60,6 @@ export class NewsAddComponent implements OnInit {
         desc_brief: this.newsAddForm.controls.desc_brief.value,
         desc_full: this.newsAddForm.controls.desc_full.value,
         link: this.newsAddForm.controls.link.value.trim(),
-        date_start: this.newsAddForm.controls.date_start.value.trim(),
-        date_end: this.newsAddForm.controls.date_end.value.trim(),
         created_at: Date()
       };
       this.newsColRef.add({
@@ -73,8 +67,6 @@ export class NewsAddComponent implements OnInit {
         desc_brief: newNews.desc_brief,
         desc_full: newNews.desc_full,
         link: newNews.link,
-        date_start: newNews.date_start,
-        date_end: newNews.date_end,
         created_at: newNews.created_at
       });
     } else {

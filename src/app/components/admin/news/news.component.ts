@@ -28,7 +28,7 @@ export class NewsComponent implements AfterViewInit {
   newsColRef: AngularFirestoreCollection<News>;
   news$: Observable<News[]>;
 
-  displayedColumns = ['title', 'desc_brief', 'link', 'date_start', 'date_end', 'id'];
+  displayedColumns = ['title', 'desc_brief', 'link', 'created_at', 'id'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;

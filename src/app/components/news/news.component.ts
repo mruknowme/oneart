@@ -54,10 +54,16 @@ export class NewsUserComponent implements OnInit {
   particlesLoaded = false;
 
   constructor(private afs: AngularFirestore) {
-    // TODO: implement functionality for news not appearing befor/after expiration date
     this.newsColRef = this.afs.collection<News>('news', ref => ref.orderBy('created_at'));
     this.news$ = this.newsColRef.valueChanges();
-    this.news$.subscribe(data => this.newsList = data);
+    this.news$.subscribe(data => {
+      this.newsList = data;
+      this.newsList.sort((a, b) => {
+        const textA = a.created_at.toString().toUpperCase();
+        const textB = b.created_at.toString().toUpperCase();
+        return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+      });
+    });
   }
 
   async ngOnInit() {

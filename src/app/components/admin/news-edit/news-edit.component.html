@@ -38,29 +38,6 @@
     <mat-error *ngIf="newsEditForm.controls.link.errors.pattern">Это поле должно только строчные латинские буквы, цифры и прочерк (без пробелов)</mat-error>
   </div>
 
-  <div class="half">
-    <mat-form-field>
-      <!-- <input matInput placeholder="Дата старта" formControlName="date_start" type="date" [(ngModel)]="news.date_start"> -->
-      <input matInput [matDatepicker]="dateStart" placeholder="Дата старта" formControlName="date_start" [(ngModel)]="news.date_start">
-      <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
-      <mat-datepicker #dateStart></mat-datepicker>
-    </mat-form-field>
-    <div *ngIf="newsEditForm.controls.date_start.invalid && (newsEditForm.controls.date_start.touched || newsEditForm.controls.date_start.dirty)">
-      <mat-error *ngIf="newsEditForm.controls.date_start.errors.required">Это поле обязательное</mat-error>
-    </div>
-  </div>
-
-  <div class="half">
-    <mat-form-field>
-      <!-- <input matInput placeholder="Дата снятия" formControlName="date_end" type="date" [(ngModel)]="news.date_end"> -->
-      <input matInput [matDatepicker]="dateEnd" placeholder="Дата снятия" formControlName="date_end" [(ngModel)]="news.date_end">
-      <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
-      <mat-datepicker #dateEnd></mat-datepicker>
-    </mat-form-field>
-    <div *ngIf="newsEditForm.controls.date_end.invalid && (newsEditForm.controls.date_end.touched || newsEditForm.controls.date_end.dirty)">
-      <mat-error *ngIf="newsEditForm.controls.date_end.errors.required">Это поле обязательное</mat-error>
-    </div>
-  </div>
     
   </mat-dialog-content>
   <mat-dialog-actions class="news-edit-dialog-actions">

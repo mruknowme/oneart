@@ -37,24 +37,6 @@
     <mat-error *ngIf="newsAddForm.controls.link.errors.maxlength">Это поле должно содержать не более 20-ти символов</mat-error>
     <mat-error *ngIf="newsAddForm.controls.link.errors.pattern">Это поле должно только строчные латинские буквы, цифры и прочерк (без пробелов)</mat-error>
   </div>
-
-  <div class="half">
-    <mat-form-field>
-      <input matInput placeholder="Дата старта" formControlName="date_start" type="date">
-    </mat-form-field>
-    <div *ngIf="newsAddForm.controls.date_start.invalid && (newsAddForm.controls.date_start.touched || newsAddForm.controls.date_start.dirty)">
-      <mat-error *ngIf="newsAddForm.controls.date_start.errors.required">Это поле обязательное</mat-error>
-    </div>
-  </div>
-
-  <div class="half">
-    <mat-form-field>
-      <input matInput placeholder="Дата снятия" formControlName="date_end" type="date">
-    </mat-form-field>
-    <div *ngIf="newsAddForm.controls.date_end.invalid && (newsAddForm.controls.date_end.touched || newsAddForm.controls.date_end.dirty)">
-      <mat-error *ngIf="newsAddForm.controls.date_end.errors.required">Это поле обязательное</mat-error>
-    </div>
-  </div>
     
   </mat-dialog-content>
   <mat-dialog-actions class="news-add-dialog-actions">
