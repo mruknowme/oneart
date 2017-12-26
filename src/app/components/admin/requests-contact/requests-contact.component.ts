@@ -38,7 +38,9 @@ export class RequestsContactComponent implements AfterViewInit {
         return { id, ...data};
       });
     });
-    this.contactRequests$.subscribe(data => this.dataSource.data = data);
+    this.contactRequests$.subscribe(data => {
+      this.dataSource.data = data;
+    });
   }
 
   // openDialog() {
@@ -65,6 +67,12 @@ export class RequestsContactComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       result === true ? console.log('saved') : console.log('closed, not saved');
     });
+  }
+
+  reply(id) {
+    const email = this.dataSource.data.filter(item => item.id === id);
+    console.log(email[0].email);
+    window.open(`mailto:${email[0].email}`);
   }
 
   applyFilter(filterValue: string) {

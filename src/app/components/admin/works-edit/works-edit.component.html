@@ -34,13 +34,37 @@
   </div>
 
   <mat-form-field>
-    <textarea matInput [froalaEditor] placeholder="Описание" formControlName="description" [(ngModel)]="work.description"></textarea>
+    <textarea matInput [froalaEditor]="froala.options" placeholder="Описание" formControlName="description" [(ngModel)]="work.description"></textarea>
   </mat-form-field>
   <div *ngIf="worksEditForm.controls.description.invalid && (worksEditForm.controls.description.touched || worksEditForm.controls.description.dirty)">
     <mat-error *ngIf="worksEditForm.controls.description.errors.required">Это поле обязательное</mat-error>
     <mat-error *ngIf="worksEditForm.controls.description.errors.minlength">Это поле должно содержать не менее 50-х символов</mat-error>
     <mat-error *ngIf="worksEditForm.controls.description.errors.maxlength">Это поле должно содержать не более 5 000 символов</mat-error>
   </div>
+
+  <div class="btn-choose-photo">
+      <p class="thumbnail-info">Перыое выбранное фото будет обложкой</p>
+      <button mat-raised-button (click)="choosePhoto()" color="primary">Выбрать фото</button>
+    </div>
+  
+    <div style="display: flex;">
+      <div style="width: 90%;">
+        <mat-form-field>
+          <input matInput type="url" placeholder="Сылка на фото (https://)" formControlName="imgUrl">
+        </mat-form-field>
+      </div>
+      <div style="display: flex; justify-content: flex-end; align-items: center; width: 10%;">
+        <button mat-raised-button color="accent" [disabled]="!addImgFromUrlBtnEnabled" (click)="checkImgUrl()"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+    <mat-error *ngIf="imageUrlErrMess != ''" [innerHtml]="imageUrlErrMess | safeHtml"></mat-error>
+  
+    <p *ngIf="chosenPhotos?.length > 0" class="delete-instructions">Дважды кликните по фото чтобы удалить из списка выбранных</p>
+    <div *ngIf="chosenPhotos?.length > 0" class="work-edit-chosenPhotos">
+      <div *ngFor="let photo of chosenPhotos; let i = index">
+        <img [src]="photo" [alt]="'Фото ' + i" (error)="errorImg(photo)" (dblclick)="removePhoto(photo)">
+      </div>
+    </div>
 
   <div class="half">
     <mat-form-field>

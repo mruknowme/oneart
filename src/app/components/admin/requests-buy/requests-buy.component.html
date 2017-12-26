@@ -56,6 +56,12 @@
                 </mat-chip-list>
               </mat-cell>
             </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="created_at">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.created_at | date:'longDate':'':'ru' }}</mat-cell>
+            </ng-container>
       
             <!-- Color Column -->
             <ng-container matColumnDef="id">
@@ -118,6 +124,12 @@
                 </mat-chip-list>
               </mat-cell>
             </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="created_at">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.created_at | date:'longDate':'':'ru' }}</mat-cell>
+            </ng-container>
       
             <!-- Color Column -->
             <ng-container matColumnDef="id">
@@ -178,6 +190,12 @@
                   <mat-chip *ngIf="element.status === 'canceled'" color="warn" selected="true">Отмененный</mat-chip>
                 </mat-chip-list>
               </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="created_at">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Дата </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{ element.created_at | date:'longDate':'':'ru' }}</mat-cell>
             </ng-container>
       
             <!-- Color Column -->

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -26,6 +26,15 @@ export interface BuyRequests {
   phone: string;
   status: string;
   work: string;
+  created_at: string;
+  email_admin: string;
+}
+
+export interface Site {
+  address: string;
+  email_general: string;
+  phone_main: string;
+  status?: boolean;
 }
 
 @Component({
@@ -66,10 +75,26 @@ export class RequestsBuyAddComponent implements OnInit {
 
   requestsBuyAddForm: FormGroup;
 
+  public siteDocRef: AngularFirestoreDocument<Site>;
+  site$: Observable<Site>;
+
+  public site: Site = {
+    address: '',
+    email_general: '',
+    phone_main: '',
+    status: true
+  };
+
   constructor(private fb: FormBuilder, private afs: AngularFirestore) {
     this.worksColRef = this.afs.collection<Work>('works', ref => ref.orderBy('title'));
     this.works$ = this.worksColRef.valueChanges();
     this.works$.subscribe(data => this.worksOptions = data);
+
+    this.siteDocRef = this.afs.doc<Site>('site/7gvZVdP6STrS7yK0cqeW');
+    this.site$ = this.siteDocRef.valueChanges();
+    this.site$.subscribe(data => {
+      this.site = data;
+    });
 
     this.createRequestsBuyAddForm();
 
@@ -99,7 +124,9 @@ export class RequestsBuyAddComponent implements OnInit {
         name: this.requestsBuyAddForm.controls.name.value.trim(),
         phone: this.requestsBuyAddForm.controls.phone.value.trim(),
         status: this.requestsBuyAddForm.controls.status_alias.value.trim(),
-        work: this.requestsBuyAddForm.controls.work_link.value.trim()
+        work: this.requestsBuyAddForm.controls.work_link.value.trim(),
+        created_at: Date(),
+        email_admin: this.site.email_general
       };
       console.log(newRequestBuy);
       this.buyRequestsColRef.add({
@@ -108,7 +135,9 @@ export class RequestsBuyAddComponent implements OnInit {
         name: newRequestBuy.name,
         phone: newRequestBuy.phone,
         status: newRequestBuy.status,
-        work: newRequestBuy.work
+        work: newRequestBuy.work,
+        created_at: newRequestBuy.created_at,
+        email_admin: newRequestBuy.email_admin
       });
     } else {
       alert('Возникла ошибка! Перезагрузите страницу и попробуйте заново.');

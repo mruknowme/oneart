@@ -44,7 +44,7 @@ export class RequestsBuyComponent implements AfterViewInit {
 
   works: Work[];
 
-  displayedColumns = ['work', 'name', 'phone', 'email', 'status', 'id'];
+  displayedColumns = ['work', 'name', 'phone', 'email', 'status', 'created_at', 'id'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
