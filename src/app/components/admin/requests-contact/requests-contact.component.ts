@@ -70,9 +70,9 @@ export class RequestsContactComponent implements AfterViewInit {
   }
 
   reply(id) {
-    const email = this.dataSource.data.filter(item => item.id === id);
-    console.log(email[0].email);
-    window.open(`mailto:${email[0].email}`);
+    const email = this.dataSource.data.find(item => (item as any).id === id);
+    // console.log((email as ContactRequest).email);
+    window.open(`mailto:${(email as ContactRequest).email}`);
   }
 
   applyFilter(filterValue: string) {
