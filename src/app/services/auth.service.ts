@@ -1,11 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/fromPromise';
+
+export interface Site {
+  address: string;
+  email_general: string;
+  phone_main: string;
+  status?: boolean;
+}
 
 @Injectable()
 export class AuthService {
@@ -17,10 +28,34 @@ export class AuthService {
   authProcessingS$ = this.authProcessingSource.asObservable();
 
   user: Observable<firebase.User>;
+  siteStatus: Observable<any>;
 
-  constructor(private firebaseAuth: AngularFireAuth, private router: Router) {
+  public siteDocRef: AngularFirestoreDocument<Site>;
+  site$: Observable<Site>;
+
+  public site: Site = {
+    address: '',
+    email_general: '',
+    phone_main: ''
+  };
+
+  constructor(private firebaseAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
     this.user = firebaseAuth.authState;
   }
+
+  getSiteStatus() {
+    const db = firebase.firestore();
+    const docRef = db.collection('site').doc('7gvZVdP6STrS7yK0cqeW');
+    return docRef.get().then(doc => {
+      if (doc.exists && doc.data().status) {
+        return true;
+      } else {
+        return false;
+      }
+
+    }).catch(err => { console.log(`err`, err); return false; });
+  }
+
 
   signup(email: string, password: string) {
     this.firebaseAuth

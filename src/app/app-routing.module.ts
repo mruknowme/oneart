@@ -20,6 +20,8 @@ import { RequestsBuyComponent } from './components/admin/requests-buy/requests-b
 import { RequestsContactComponent } from './components/admin/requests-contact/requests-contact.component';
 import { SignInComponent } from './components/admin/sign-in/sign-in.component';
 import { UploadComponent } from './components/admin/upload/upload.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { MaintenanceGuard } from './guards/maintenance.guard';
 
 const routes: Routes = [
   {
@@ -29,44 +31,62 @@ const routes: Routes = [
       {
         path: '',
         component: NewsUserComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'news/:link',
         component: NewsSingleComponent,
-        data: { page: 'newsSingle' }
+        data: { page: 'newsSingle' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'genres',
         component: GenresUserComponent,
-        data: { page: 'genres' }
+        data: { page: 'genres' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'genres/:genre',
         component: GenresUserComponent,
-        data: { page: 'genresSpecific' }
+        data: { page: 'genresSpecific' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'about',
         component: AboutComponent,
-        data: { page: 'about' }
+        data: { page: 'about' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'contact',
         component: ContactComponent,
-        data: { page: 'contact' }
+        data: { page: 'contact' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'works',
         component: HomeComponent,
-        data: { page: 'home' }
+        data: { page: 'home' },
+        canActivate: [MaintenanceGuard]
       },
       {
         path: 'works/:alias',
         component: WorkComponent,
-        data: { page: 'work' }
+        data: { page: 'work' },
+        canActivate: [MaintenanceGuard]
+      },
+      {
+        path: '**',
+        component: NewsUserComponent,
+        canActivate: [MaintenanceGuard]
       }
     ]
+  },
+  {
+    path: 'maintenance',
+    component: MaintenanceComponent,
+    data: { page: 'maintenance' }
   },
   {
     path: 'admin/sign-in',
@@ -122,10 +142,15 @@ const routes: Routes = [
         path: 'upload',
         component: UploadComponent,
         canActivate: [AuthGuard]
+      },
+      {
+        path: '**',
+        component: NewsUserComponent,
+        canActivate: [MaintenanceGuard]
       }
     ]
   },
-  { path: '**', component: NewsUserComponent }
+  { path: '**', component: NewsUserComponent, canActivate: [MaintenanceGuard] }
 ];
 
 @NgModule({

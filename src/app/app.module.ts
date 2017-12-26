@@ -101,6 +101,8 @@ import { UploadComponent } from './components/admin/upload/upload.component';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha/recaptcha/recaptcha-settings';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.service';
 import { UploadDialogComponent } from './components/admin/upload-dialog/upload-dialog.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { MaintenanceGuard } from './guards/maintenance.guard';
 
 @NgModule({
   declarations: [
@@ -147,7 +149,8 @@ import { UploadDialogComponent } from './components/admin/upload-dialog/upload-d
     SignInComponent,
     FileDropDirective,
     UploadComponent,
-    UploadDialogComponent
+    UploadDialogComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -203,6 +206,7 @@ import { UploadDialogComponent } from './components/admin/upload-dialog/upload-d
   providers: [
     DataService,
     UploadService,
+    MaintenanceGuard,
     AuthService,
     FileDropDirective,
     AuthGuard,
