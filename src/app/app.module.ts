@@ -103,6 +103,7 @@ import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha/recaptcha/recaptcha-loader.serv
 import { UploadDialogComponent } from './components/admin/upload-dialog/upload-dialog.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { MaintenanceGuard } from './guards/maintenance.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { MaintenanceGuard } from './guards/maintenance.guard';
     FileDropDirective,
     UploadComponent,
     UploadDialogComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,7 @@ export interface BuyForm {
   status: string;
   work: string;
   email_admin: string;
+  created_at: string;
 }
 
 export interface Site {
@@ -116,7 +117,8 @@ export class WorkComponent implements OnInit {
         message: this.buyForm.controls.message.value,
         status: 'open',
         work: this.activatedRoute.snapshot.params.alias,
-        email_admin: this.site.email_general
+        email_admin: this.site.email_general,
+        created_at: Date()
       };
       this.buyFormColRef.add({
         name: newBuyRequest.name,
@@ -125,7 +127,8 @@ export class WorkComponent implements OnInit {
         message: newBuyRequest.message,
         status: newBuyRequest.status,
         work: newBuyRequest.work,
-        email_admin: newBuyRequest.email_admin
+        email_admin: newBuyRequest.email_admin,
+        created_at: newBuyRequest.created_at
       });
       this.buyFormSubmitted = true;
     } else {

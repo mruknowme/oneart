@@ -52,7 +52,7 @@ export class RequestsBuyComponent implements AfterViewInit {
 
   constructor(public dialog: MatDialog, private afs: AngularFirestore) {
     this.buyRequestsColRef = this.afs.collection<BuyRequests>('buy_requests', ref => {
-      return ref.where('status', '==', 'open');
+      return ref.where('status', '==', 'open').orderBy('created_at');
     });
     this.buyRequests$ = this.buyRequestsColRef.snapshotChanges().map(actions => {
       return actions.map(action => {
@@ -123,22 +123,22 @@ export class RequestsBuyComponent implements AfterViewInit {
     switch (event.index) {
       case 0:
         this.buyRequestsColRef = this.afs.collection<BuyRequests>('buy_requests', ref => {
-          return ref.where('status', '==', 'open');
+          return ref.where('status', '==', 'open').orderBy('created_at');
         });
         break;
       case 1:
         this.buyRequestsColRef = this.afs.collection<BuyRequests>('buy_requests', ref => {
-          return ref.where('status', '==', 'complete');
+          return ref.where('status', '==', 'complete').orderBy('created_at');
         });
         break;
       case 2:
         this.buyRequestsColRef = this.afs.collection<BuyRequests>('buy_requests', ref => {
-          return ref.where('status', '==', 'canceled');
+          return ref.where('status', '==', 'canceled').orderBy('created_at');
         });
         break;
       default:
         this.buyRequestsColRef = this.afs.collection<BuyRequests>('buy_requests', ref => {
-          return ref.where('status', '==', 'open');
+          return ref.where('status', '==', 'open').orderBy('created_at');
         });
     }
     this.buyRequests$ = this.buyRequestsColRef.snapshotChanges().map(actions => {

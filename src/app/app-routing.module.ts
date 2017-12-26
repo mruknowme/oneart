@@ -22,6 +22,7 @@ import { SignInComponent } from './components/admin/sign-in/sign-in.component';
 import { UploadComponent } from './components/admin/upload/upload.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { MaintenanceGuard } from './guards/maintenance.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -75,11 +76,6 @@ const routes: Routes = [
         component: WorkComponent,
         data: { page: 'work' },
         canActivate: [MaintenanceGuard]
-      },
-      {
-        path: '**',
-        component: NewsUserComponent,
-        canActivate: [MaintenanceGuard]
       }
     ]
   },
@@ -91,7 +87,8 @@ const routes: Routes = [
   {
     path: 'admin/sign-in',
     component: SignInComponent,
-    data: { page: 'signIn' }
+    data: { page: 'signIn' },
+    pathMatch: 'full'
   },
   {
     path: 'admin',
@@ -150,7 +147,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', component: NewsUserComponent, canActivate: [MaintenanceGuard] }
+  { path: '**', component: NotFoundComponent, canActivate: [MaintenanceGuard] }
 ];
 
 @NgModule({
